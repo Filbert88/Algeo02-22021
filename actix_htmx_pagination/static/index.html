@@ -1,0 +1,16 @@
+<!-- static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination with Actix and HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.8.1"></script>
+</head>
+<body>
+    <div id="items-list">
+        <button hx-post="/items" hx-vals='{"direction": "next"}' hx-target="#items-list" hx-swap="innerHTML">
+            Next
+        </button>
+    </div>
+</body>
+</html>
