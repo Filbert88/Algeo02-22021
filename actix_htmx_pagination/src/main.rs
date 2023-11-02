@@ -1,4 +1,7 @@
-use actix_web::{web, App, HttpServer, HttpResponse, Responder, Error};
+use actix_multipart::Multipart;
+use actix_web::{web, App, Error, HttpServer, HttpResponse, Responder};
+use futures::{StreamExt, TryStreamExt};
+use std::io::Write;
 use serde::{Serialize, Deserialize};
 use std::sync::Mutex;
 use env_logger::Env;
@@ -34,6 +37,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(app_data.clone())
             .route("/", web::get().to(index))
             .route("/items", web::post().to(paginated_items))
+            .route("/upload", web::post().to(upload))
     })
     .bind(("127.0.0.1", 8080))?
     .run()
@@ -99,4 +103,37 @@ async fn index(data: web::Data<AppState>) -> impl Responder {
     *page = -1;
     info!("Reset pagination and serving index.html");
     HttpResponse::Ok().content_type("text/html").body(include_str!("../static/index.html"))
+}
+
+async fn upload(mut payload: Multipart) -> Result<HttpResponse, Error> {
+    // Iterate over multipart stream
+    let mut image_name = String::new();
+    while let Ok(Some(mut field)) = payload.try_next().await {
+        let content_disposition = field.content_disposition();
+        let filename = content_disposition.get_filename().unwrap();
+        image_name = filename.to_string();
+        let filepath = format!("./images/{}", sanitize_filename::sanitize(&filename));
+
+        // File::create is blocking operation, use threadpool
+        let mut f = web::block(|| std::fs::File::create(filepath))
+            .await
+            .unwrap();
+
+        // Field in turn is stream of *Bytes* object
+        while let Some(chunk) = field.next().await {
+            let data = chunk.unwrap();
+            // filesystem operations are blocking, we have to use threadpool
+            f = web::block(move || f.as_ref().expect("REASON").write_all(&data).map(|_| f))
+                .await
+                .map_err(|e| {
+                    error!("File write error: {}", e);
+                    actix_web::error::ErrorInternalServerError(e)
+                })??;
+        }
+    }
+    let image_url = format!("/images/{}", sanitize_filename::sanitize(&image_name.as_str()));
+    Ok(HttpResponse::Ok()
+        .content_type("text/html")
+        .body(format!("<img src='{}' alt='Uploaded Image'/><p>Uploaded Image</p>",image_url))
+    )
 }
