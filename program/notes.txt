@@ -7,29 +7,7 @@ Source: https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html
 
 https://tarekmamdouh.wordpress.com/2013/08/12/global-and-local-color-histogram/
 
-3. OpenCV using calcHist vs Manual loop:
+3. A Robust CBIR Approach Using Local Color Histograms
+https://cis.temple.edu/~lakaemper/courses/cis595_2004/papers/wang2001.pdf
 
-    img = cv2.imread(image_location)
-    height, width, depth = img.shape
-
-    print("Height", height)
-    print("Width", width)
-    print("Depth", depth)
-
-
-
-    hsv_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-    h_hist = cv2.calcHist([hsv_image], [0], None, [2], [0, 180])
-
-    a = 0
-    b = 0
-
-    for y in range(height):
-        for x in range(width):
-            h, s, v = hsv_image[y, x]
-            if h < 90:
-                a += 1
-            else:
-                b += 1
 
