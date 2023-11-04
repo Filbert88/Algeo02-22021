@@ -1,0 +1,189 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"); */
+
+@font-face {
+  font-family: "SpaceMono";
+  src: url("fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "SpaceMono", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f9f1ee;
+  z-index: 1;
+  /* background-image: url('img/bg2.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: inherit;
+    opacity: 0.1; Adjust the opacity as needed */
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.tamanBermain {
+  font-size: 40px;
+  color: #2b2b2b;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  font-style: italic;
+}
+
+.submit {
+  /* Center the button and preview */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+  /* Add additional styles to match your design */
+}
+
+.navbar a {
+  position: relative;
+  font-size: 22px;
+  color: #2b2b2b;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+.navbar a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2b2b2b;
+  transition: 0.3s;
+}
+
+.navbar a:hover::before {
+  width: 100%;
+}
+
+.navbar .launchApp {
+  border-radius: 2px;
+  font-weight: 500;
+  background-color: #e0e0e0;
+  padding: 5px 15px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.navbar .launchApp:hover::before {
+  width: 0;
+}
+.navbar .launchApp:hover {
+  /* background-color: #fdf8bf; */
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 1); */
+  text-decoration: none;
+  /* opacity: 0.5; */
+  background-color: rgba(213, 213, 213, 0.5);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.typing-demo {
+  width: 10ch;
+  animation: typing 2s steps(10), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 100px;
+}
+
+.typing-p {
+  /* width: 168ch; */
+  animation: typing-p 2s steps(168), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes typing-p {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%; /* Go to full width */
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* To center vertically in the container */
+  width: 80%;
+  max-width: 800px; /* Example max-width; adjust as needed */
+  margin: 0 auto; /* This will center the container if it's less than 100% width */
+  padding: 20px; /* Adds some spacing inside the container */
+  word-wrap: break-word; /* This will wrap long words if necessary */
+  font-size: 20px;
+  text-align: center;
+}
