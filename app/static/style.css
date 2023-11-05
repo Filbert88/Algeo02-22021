@@ -50,7 +50,13 @@ body::before {
   color: #2b2b2b;
   text-decoration: none;
   font-weight: 700;
+  transition: transform 0.3s ease, color 0.3s ease; /* Add transitions for transform and color */
 }
+
+.logo:hover {
+  transform: scale(1.1); /* Scale the logo up by 10% when hovered */ /* Change the color on hover */
+}
+
 
 .title {
   text-align: center;
@@ -74,6 +80,22 @@ body::before {
   background-color: #f8f8f8;
   margin-top: 10px;
 }
+
+.getStarted {
+  background-color: #2b2b2b;
+  color: #f9f1ee;
+  text-decoration: none;
+  font-size: 30px;
+  margin-top: 10px;
+  transition: all .3s ease-in-out; /* Add a transition for the transform property */
+}
+
+.getStarted:hover {
+  transform: translateY(-5px); /* Move the link 5 pixels up when hovered */
+  background-color: #e0e0e0;
+  color: #2b2b2b;
+}
+
 
 .navbar .launchApp {
   position: relative;
@@ -179,7 +201,7 @@ body::before {
   justify-content: center;
   align-items: center;
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   word-wrap: break-word;
