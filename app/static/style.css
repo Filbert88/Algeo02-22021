@@ -368,9 +368,8 @@ body::before {
 }
 
 .carddev .developer {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 }
 
 .carddev p {
@@ -574,6 +573,7 @@ button:hover .button-text {
 }
 
 .photos-slider-right {
+  margin-top: 5px;
   display: inline-block;
   animation: 40s slide-right infinite linear;
 }
