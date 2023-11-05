@@ -16,7 +16,6 @@ body {
   min-height: 100vh;
   background-color: #f9f1ee;
   z-index: 1;
-  /* background-image: url('img/bg2.jpg'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -57,7 +56,6 @@ body::before {
   transform: scale(1.1);
 }
 
-
 .title {
   text-align: center;
   font-size: 40px;
@@ -87,15 +85,14 @@ body::before {
   text-decoration: none;
   font-size: 30px;
   margin-top: 10px;
-  transition: all .3s ease-in-out; /* Add a transition for the transform property */
+  transition: all 0.3s ease-in-out;
 }
 
 .getStarted:hover {
-  transform: translateY(-5px); /* Move the link 5 pixels up when hovered */
+  transform: translateY(-5px);
   background-color: #e0e0e0;
   color: #2b2b2b;
 }
-
 
 .navbar .launchApp {
   position: relative;
@@ -238,7 +235,7 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url("foto/download.png");
+  background-image: url("img/download.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
