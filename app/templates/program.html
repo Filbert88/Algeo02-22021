@@ -55,6 +55,12 @@
         <div id="preview_2"></div>
       </div>
     </form>
+    <div id="image-upload">
+      <form hx-post="/upload_dataset" hx-target="#image-upload" hx-swap="afterend" enctype="multipart/form-data">
+          <input type="file" name="image" accept="image/*">
+          <input type="submit" value="Upload Image">
+      </form>
+    </div>
     <div class="card-container">
       <div class="card">
         <img
