@@ -1,23 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixPlore | Devs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">  
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
+  </head>
+  <body>
     <header class="header">
-        <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
-        <nav class="navbar">
-            <a href="{{ url_for('index') }}" class="textnav">Home</a>
-            <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
-            <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
-        </nav>
+      <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+      <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="textnav">Home</a>
+        <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
+        <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
+      </nav>
     </header>
-    <h1>ini page  Developers</h1>
-
-</body>
+    <div class="dev">
+      <h1>The team</h1>
+      <p>
+        We want to see the world more fair and transparent. We are building the
+        missing puzzles in order to see our vision come true.
+      </p>
+    </div>
+    <div>
+      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" />
+      <p>Meet us!</p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta
+        repellendus expedita consequuntur incidunt rerum omnis nemo possimus
+        dignissimos quisquam laborum esse quam quo, debitis, sunt nulla, vitae
+        beatae aliquam! Magni, qui eaque nobis perspiciatis facere distinctio,
+        molestiae maxime ipsum fugiat sapiente rerum atque nostrum! Accusantium
+        atque consectetur amet eligendi quidem dolor nulla a perferendis ratione
+        fuga, quisquam dolores porro, eaque sit ipsam unde magni quo nostrum
+        cumque. Accusamus cupiditate itaque perferendis quas praesentium
+        explicabo, quia voluptates unde nulla fuga voluptatibus illo, nihil,
+        molestias consequuntur ab! Voluptatem velit a repudiandae corrupti ab.
+        Obcaecati, impedit ipsa soluta rem voluptas maiores fuga accusantium!
+      </p>
+    </div>
+    <div>
+      <h1>Our Developers</h1>
+    </div>
+    <div class="carddev-container">
+      <div class="carddev">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Developer"
+          style="width: 100%"
+        />
+        <p>Filbert</p>
+        <p>13522021</p>
+        <p>Front End</p>
+        <img
+          src="{{ url_for('static', filename='img/github_logo.svg') }}"
+          alt="github"
+        />
+      </div>
+    </div>
+    <div class="carddev-container">
+      <div class="carddev">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Developer"
+          style="width: 100%"
+        />
+        <p>Juan Alfred Wijaya</p>
+        <p>13522073</p>
+        <p>Back End</p>
+        <img
+          src="{{ url_for('static', filename='img/github_logo.svg') }}"
+          alt="github"
+        />
+      </div>
+    </div>
+    <div class="carddev-container">
+      <div class="carddev">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Developer"
+          style="width: 100%"
+        />
+        <p>Azmi Mahmud Bahzeid</p>
+        <p>13522109</p>
+        <p>Program</p>
+        <img
+          src="{{ url_for('static', filename='img/github_logo.svg') }}"
+          alt="github"
+        />
+      </div>
+    </div>
+  </body>
 </html>
