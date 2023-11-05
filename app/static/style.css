@@ -50,11 +50,11 @@ body::before {
   color: #2b2b2b;
   text-decoration: none;
   font-weight: 700;
-  transition: transform 0.3s ease, color 0.3s ease; /* Add transitions for transform and color */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1); /* Scale the logo up by 10% when hovered */ /* Change the color on hover */
+  transform: scale(1.1);
 }
 
 

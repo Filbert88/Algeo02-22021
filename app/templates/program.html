@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Upload</title>
+    <title>PixPlore | App</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">  
     <style>
       #preview img {
         /* Just for demonstration */
@@ -64,52 +66,55 @@
     <div class="card-container">
       <div class="card">
         <img
-          src="../static/foto/img_avatar.png"
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
           alt="Avatar"
           style="width: 100%"
         />
         <p>Similarity: 69%</p>
         <a
-          href="../static/foto/img_avatar.png"
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
           download="myimage"
           class="download-btn"
         ></a>
       </div>
       <div class="card">
         <img
-          src="../static/foto/img_avatar.png"
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
           alt="Avatar"
           style="width: 100%"
         />
         <p>Similarity: 33.3%</p>
         <a
-          href="../static/foto/img_avatar.png"
-          download="myimage"
-          class="download-btn"
-        >
-        </a>
-      </div>
-      <div class="card">
-        <img
-          src="../static/foto/img_avatar.png"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <p>Similarity: 45%</p>
-        <a
-          href="../static/foto/img_avatar.png"
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
           download="myimage"
           class="download-btn"
         ></a>
       </div>
       <div class="card">
         <img
-          src="../static/foto/img_avatar.png"
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 45%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
           alt="Avatar"
           style="width: 100%"
         />
         <p>Similarity: 29%</p>
-        <a href="../static/foto/img_avatar.png" download="myimage" class="download-btn"></a>
+        <a 
+          href="{{ url_for('static', filename='img/img_avatar.png') }}" 
+          download="myimage" 
+          class="download-btn"
+        ></a>
       </div>
     </div>
   </body>
