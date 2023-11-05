@@ -1,23 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixPlore | Help</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">  
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
+  </head>
+  <body>
     <header class="header">
-        <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
-        <nav class="navbar">
-            <a href="{{ url_for('index') }}" class="textnav">Home</a>
-            <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
-            <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
-        </nav>
+      <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+      <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="textnav">Home</a>
+        <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
+        <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
+      </nav>
     </header>
-    <h1>Ini page Guides</h1>
+    <div class="guides-wrapper">
+      <div class="guides-container">
+        <h1>How to Use PixPlore</h1>
+        <section class="guide-section">
+          <h2>Getting Started</h2>
+          <p>Instructions on how to get started with PixPlore...</p>
+        </section>
+        <section class="guide-section">
+          <h2>Uploading Images</h2>
+          <p>Detailed steps on how to upload and manage images...</p>
+        </section>
+        <section class="guide-section">
+          <h2>Searching and Exploring</h2>
+          <p>Tips on how to effectively search and explore images...</p>
+        </section>
+        <section class="guide-section">
+          <h2>Additional Features</h2>
+          <p>Information about additional features and how to use them...</p>
+        </section>
+      </div>
 
-</body>
+      <div class="guide-container">
+        <a href="{{ url_for('program') }}">
+          <button class="learn-more">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Get Started</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>
 </html>
