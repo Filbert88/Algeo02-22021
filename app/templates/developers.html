@@ -28,79 +28,98 @@
         <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
       </nav>
     </header>
-    <div class="dev">
-      <h1>The team</h1>
-      <p>
-        We want to see the world more fair and transparent. We are building the
-        missing puzzles in order to see our vision come true.
-      </p>
-    </div>
-    <div>
-      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" />
-      <p>Meet us!</p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta
-        repellendus expedita consequuntur incidunt rerum omnis nemo possimus
-        dignissimos quisquam laborum esse quam quo, debitis, sunt nulla, vitae
-        beatae aliquam! Magni, qui eaque nobis perspiciatis facere distinctio,
-        molestiae maxime ipsum fugiat sapiente rerum atque nostrum! Accusantium
-        atque consectetur amet eligendi quidem dolor nulla a perferendis ratione
-        fuga, quisquam dolores porro, eaque sit ipsam unde magni quo nostrum
-        cumque. Accusamus cupiditate itaque perferendis quas praesentium
-        explicabo, quia voluptates unde nulla fuga voluptatibus illo, nihil,
-        molestias consequuntur ab! Voluptatem velit a repudiandae corrupti ab.
-        Obcaecati, impedit ipsa soluta rem voluptas maiores fuga accusantium!
-      </p>
-    </div>
-    <div>
-      <h1>Our Developers</h1>
-    </div>
-    <div class="carddev-container">
-      <div class="carddev">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Developer"
-          style="width: 100%"
-        />
-        <p>Filbert</p>
-        <p>13522021</p>
-        <p>Front End</p>
-        <img
-          src="{{ url_for('static', filename='img/github_logo.svg') }}"
-          alt="github"
-        />
+    <div class="dev-wrapper">
+      <div class="dev-demo">
+        <h1>The team</h1>
+      </div>
+      <div class="dev-container">
+        <p>
+          We want to see the world more fair and transparent. We are building
+          the missing puzzles in order to see our vision come true.
+        </p>
       </div>
     </div>
-    <div class="carddev-container">
-      <div class="carddev">
+    <div class="dev-content-container">
+      <div class="dev-image-container">
         <img
           src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Developer"
+          alt="Avatar"
           style="width: 100%"
-        />
-        <p>Juan Alfred Wijaya</p>
-        <p>13522073</p>
-        <p>Back End</p>
-        <img
-          src="{{ url_for('static', filename='img/github_logo.svg') }}"
-          alt="github"
         />
       </div>
+      <div class="dev-text-container">
+        <h2>Meet us!</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi iste
+          veniam porro, incidunt placeat labore reprehenderit earum alias eos
+          consequatur debitis sed fugit iure velit ad, amet quis exercitationem
+          perferendis aliquid rerum magni omnis! Labore illum soluta ea
+          aspernatur ducimus odio dolore dignissimos dolores nihil. Modi, animi
+          voluptatibus! Nulla, optio.
+        </p>
+      </div>
     </div>
-    <div class="carddev-container">
-      <div class="carddev">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Developer"
-          style="width: 100%"
-        />
-        <p>Azmi Mahmud Bahzeid</p>
-        <p>13522109</p>
-        <p>Program</p>
-        <img
-          src="{{ url_for('static', filename='img/github_logo.svg') }}"
-          alt="github"
-        />
+
+    <div class="dev-developer-wrapper">
+        <div class="dev-text-developers">
+            <h1>Our Developers</h1>
+        </div>
+        <div class="carddev-container">
+            <div class="carddev">
+                <img
+                    src="{{ url_for('static', filename='img/img_avatar.png') }}"
+                    alt="Developer"
+                    class="developer"
+                    style="width: 100%"
+                />
+                <p class="name">Filbert</p>
+                <p class="id">13522021</p>
+                <p class="role">Front End</p>
+                <a href="https://github.com/Filbert88" target="_blank">
+                  <img
+                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
+                    alt="github"
+                    class="github-logo"
+                  />
+                </a>
+            </div>
+            <div class="carddev">
+                <img
+                    src="{{ url_for('static', filename='img/img_avatar.png') }}"
+                    alt="Developer"
+                    class="developer"
+                    style="width: 100%"
+                />
+                <p class="name">Juan Alfred Wijaya</p>
+                <p class="id">13522073</p>
+                <p class="role">Back End</p>
+                <a href="https://github.com/juanaw6" target="_blank">
+                  <img
+                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
+                    alt="github"
+                    class="github-logo"
+                  />
+                </a>
+            </div>
+            <div class="carddev">
+                <img
+                    src="{{ url_for('static', filename='img/img_avatar.png') }}"
+                    alt="Developer"
+                    class="developer"
+                    style="width: 100%"
+                />
+                <p class="name">Azmi Mahmud Bahzeid</p>
+                <p class="id">13522109</p>
+                <p class="role">Back End</p>
+                <a href="https://github.com/RealAzzmi" target="_blank">
+                  <img
+                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
+                    alt="github"
+                    class="github-logo"
+                  />
+                </a>
+            </div>
+        </div>
       </div>
     </div>
   </body>
