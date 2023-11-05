@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Upload</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <style>
       #preview img {
         /* Just for demonstration */
@@ -14,18 +17,23 @@
     </style>
     <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-    </head>
-    <body>
+  </head>
+  <body>
     <header class="header">
-      <a href="index.html" class="logo">PixPlore.</a>
-        <nav class="navbar">
-          <a href="{{ url_for('index') }}" class="textnav">Home</a>
-          <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
-          <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
-        </nav>
+      <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+      <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="textnav">Home</a>
+        <a href="{{ url_for('developers') }}" class="textnav">Developers</a>
+        <a href="{{ url_for('guides') }}" class="textnav">Guides</a>
+      </nav>
     </header>
     <h1 class="title">Reverse Image Search</h1>
-    <form hx-post="/upload_image" hx-encoding="multipart/form-data" hx-target="#preview_2" hx-swap="innerHTML">
+    <form
+      hx-post="/upload_image"
+      hx-encoding="multipart/form-data"
+      hx-target="#preview_2"
+      hx-swap="innerHTML"
+    >
       <div class="submit">
         <input
           hx-get="/reset_message"
@@ -35,15 +43,68 @@
           id="imageInput"
           name="image"
           accept=".jpg, .jpeg, .png"
-          style="display: none;"
+          style="display: none"
           onchange="handleFiles(this.files); showFileName(this.files);"
         />
-        <label for="imageInput" class="custom-file-upload">Insert An Image</label>
+        <label for="imageInput" class="custom-file-upload"
+          >Insert An Image</label
+        >
         <span id="file-chosen">No file chosen</span>
         <div id="preview"></div>
         <button type="submit" id="searchButton">Search</button>
         <div id="preview_2"></div>
       </div>
     </form>
+    <div class="card-container">
+      <div class="card">
+        <img
+          src="../static/foto/img_avatar.png"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 69%</p>
+        <a
+          href="../static/foto/img_avatar.png"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="../static/foto/img_avatar.png"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 33.3%</p>
+        <a
+          href="../static/foto/img_avatar.png"
+          download="myimage"
+          class="download-btn"
+        >
+        </a>
+      </div>
+      <div class="card">
+        <img
+          src="../static/foto/img_avatar.png"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 45%</p>
+        <a
+          href="../static/foto/img_avatar.png"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="../static/foto/img_avatar.png"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 29%</p>
+        <a href="../static/foto/img_avatar.png" download="myimage" class="download-btn"></a>
+      </div>
+    </div>
   </body>
 </html>
