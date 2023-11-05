@@ -149,7 +149,9 @@ body::before {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 40vh;
+  animation: fadeIn 1.5s ease-in-out;
+  margin-bottom: 20px;
 }
 
 .typing-demo {
@@ -162,28 +164,9 @@ body::before {
   font-size: 100px;
 }
 
-.typing-p {
-  animation: typing-p 2s steps(168), blink 0.5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
-  font-size: 20px;
-  text-align: center;
-}
-
 @keyframes typing {
   from {
     width: 0;
-  }
-}
-
-@keyframes typing-p {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
   }
 }
 
@@ -461,7 +444,7 @@ body::before {
   margin-top: 20px;
 }
 
-button {
+button.learn-more {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -473,9 +456,6 @@ button {
   padding: 0;
   font-size: inherit;
   font-family: inherit;
-}
-
-button.learn-more {
   width: 12rem;
   height: auto;
 }
@@ -547,4 +527,71 @@ button:hover .circle .icon.arrow {
 
 button:hover .button-text {
   color: #fff;
+}
+
+.photos-right, .photos-left {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.photos-right:before, .photos-right:after,
+.photos-left:before, .photos-left:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.photos-right:before, .photos-left:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), #f9f1ee);
+}
+
+.photos-right:after, .photos-left:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #f9f1ee);
+}
+
+.photos-slider-left {
+  display: inline-block;
+  animation: 40s slide-left infinite linear;
+}
+
+.photos-slider-left img, .photos-slider-right img {
+  height: 200px;
+  margin: 0 10px;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(0);
+  } to {
+    transform: translateX(-100%);
+  }
+}
+
+.photos-slider-right {
+  display: inline-block;
+  animation: 40s slide-right infinite linear;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  } to {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
