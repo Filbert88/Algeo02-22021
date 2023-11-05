@@ -82,7 +82,8 @@ body::before {
   font-weight: 500;
   text-decoration: none;
   margin-left: 40px;
-  background: linear-gradient(0deg, #2b2b2b, #2b2b2b) no-repeat left / 0 var(--bg-h);
+  background: linear-gradient(0deg, #2b2b2b, #2b2b2b) no-repeat left / 0
+    var(--bg-h);
   transition: background-size 350ms;
   --bg-h: 100%;
 }
@@ -186,9 +187,67 @@ body::before {
   text-align: center;
 }
 
-.card-result{
+.card-container {
   display: flex;
-  border-radius: 5px;
-  background-color: #2b2b2b;
-  
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 90px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: calc(25% - 20px);
+  height: auto;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  text-align: center;
+  overflow: hidden;
+  font-size: 15px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.download-btn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("foto/download.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  display: none;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(1px);
+  transform: scale(0.95);
+}
+
+.card:hover .download-btn {
+  display: block;
+  filter: none;
+}
+
+.card:hover img,
+.card:hover p {
+  opacity: 0.8;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.card-container .card-container {
+  padding: 2px 16px;
 }
