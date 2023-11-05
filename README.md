@@ -9,7 +9,7 @@
 This guide will walk you through setting up a virtual environment and running a Flask application for the first time.
 
 ## Initialize Virtual Environment
-
+### Only if you haven't set up the virtual environment.
 1. Open your terminal or command prompt.
 
 2. Navigate to your project directory.
@@ -49,7 +49,7 @@ This guide will walk you through setting up a virtual environment and running a 
 2. Run the Flask application:
 
     ```
-    flask run
+    flask run --debug
     ```
 
     This will start your Flask app, and you should see output indicating the server is running. By default, it will run on http://127.0.0.1:5000/.
