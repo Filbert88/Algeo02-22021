@@ -5,9 +5,10 @@ from flask import Flask, request, render_template, redirect, url_for
 from app import color_cbir
 import json
 import numpy as np
-from pathlib import Path
 import shutil
 import zipfile
+import subprocess
+import orjson
 
 @app.route('/')
 def index():
@@ -89,19 +90,9 @@ def upload_dataset() :
         return 'No selected file'
     if file and file.filename.endswith('.zip'):
         dataset_dir = app.config['DATASET_FOLDER']
-        clear_directory(dataset_dir)
-        extract_images(file, dataset_dir)
+        rust_extract_zip(file, 'data/img')
         save_every_image_vec_to_json(dataset_dir)
         return '<h1>File successfully uploaded and images extracted.</h1>'
-
-def clear_directory(dir_path):
-    path = Path(dir_path)
-    if path.exists() and path.is_dir():
-        for item in path.iterdir():
-            if item.is_dir():
-                shutil.rmtree(item)
-            else:
-                item.unlink()
 
 def extract_images(file, dir_path):
     with zipfile.ZipFile(file, 'r') as zip_ref:
@@ -112,16 +103,45 @@ def extract_images(file, dir_path):
 
 def save_every_image_vec_to_json(dir_path) :
     with open('data/dataset_vec.json', 'w') as f:
-            json.dump([], f, indent=4)
-    for filename in os.listdir(dir_path) :
+        json.dump([], f, indent=4)
+
+    file_list = os.listdir(dir_path)
+    total_files = len(file_list)
+    counter = 1
+    n = 10
+    delta = total_files - (total_files % n)
+
+    list_data = []
+    for filename in file_list:
         file_path = os.path.join(dir_path, filename)
         vec = color_cbir.get_vec_from_hsv_load(file_path)
         temp_data = {
-            "image_path" : file_path,
-            "vec" : str(vec)
+            "image_path": file_path,
+            "vec": str(vec)
         }
-        with open('data/dataset_vec.json', 'r') as f:
-            dataset = json.load(f)
-        dataset.append(temp_data)
-        with open('data/dataset_vec.json', 'w') as f:
-            json.dump(dataset, f, indent=4)
+        list_data.append(temp_data)
+        if counter % n == 0 or (counter > delta):
+            with open('data/dataset_vec.json', 'rb') as f:  # Read bytes
+                dataset = orjson.loads(f.read())
+            dataset.extend(list_data)
+            with open('data/dataset_vec.json', 'wb') as f:  # Write bytes
+                f.write(orjson.dumps(dataset))
+            list_data = []
+        counter += 1
+
+def rust_extract_zip(file, dir_path) :
+    zip_file_path = os.path.join(dir_path, file.filename)
+    file.save(zip_file_path)
+
+    rust_binary_path = 'rust_zip_extractor/target/release/rust_zip_extractor.exe'
+    
+    output_dir = 'data/img'
+
+    command = [rust_binary_path, zip_file_path, output_dir]
+
+    try:
+        subprocess.check_output(command, stderr=subprocess.STDOUT, text=True)
+        print('Success')
+    except subprocess.CalledProcessError as e:
+        print(f'Error: {e.returncode}\nOutput: {e.output}')
+    os.remove(zip_file_path)

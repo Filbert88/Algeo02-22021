@@ -1,0 +1,1 @@
+C:\Users\LENOVO\OneDrive\Desktop\python-web\Algeo02-22021\rust_zip_extractor\target\release\rust_zip_extractor.exe: C:\Users\LENOVO\OneDrive\Desktop\python-web\Algeo02-22021\rust_zip_extractor\src\main.rs
