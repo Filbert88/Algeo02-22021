@@ -562,7 +562,7 @@ button:hover .button-text {
 
 .photos-slider-left {
   display: inline-block;
-  animation: 40s slide-left infinite linear;
+  animation: 80s slide-left infinite linear;
 }
 
 .photos-slider-left img,
@@ -583,7 +583,7 @@ button:hover .button-text {
 .photos-slider-right {
   /* margin-top: 10px; */
   display: inline-block;
-  animation: 40s slide-right infinite linear;
+  animation: 80s slide-right infinite linear;
 }
 
 @keyframes slide-right {
