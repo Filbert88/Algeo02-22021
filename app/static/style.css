@@ -151,7 +151,7 @@ body::before {
   align-items: center;
   height: 40vh;
   animation: fadeIn 1.5s ease-in-out;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .typing-demo {
@@ -528,14 +528,17 @@ button:hover .button-text {
   color: #fff;
 }
 
-.photos-right, .photos-left {
+.photos-right,
+.photos-left {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
 }
 
-.photos-right:before, .photos-right:after,
-.photos-left:before, .photos-left:after {
+.photos-right:before,
+.photos-right:after,
+.photos-left:before,
+.photos-left:after {
   position: absolute;
   top: 0;
   width: 250px;
@@ -544,12 +547,14 @@ button:hover .button-text {
   z-index: 2;
 }
 
-.photos-right:before, .photos-left:before {
+.photos-right:before,
+.photos-left:before {
   left: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 0), #f9f1ee);
 }
 
-.photos-right:after, .photos-left:after {
+.photos-right:after,
+.photos-left:after {
   right: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), #f9f1ee);
 }
@@ -559,7 +564,8 @@ button:hover .button-text {
   animation: 40s slide-left infinite linear;
 }
 
-.photos-slider-left img, .photos-slider-right img {
+.photos-slider-left img,
+.photos-slider-right img {
   height: 200px;
   margin: 0 10px;
 }
@@ -567,13 +573,14 @@ button:hover .button-text {
 @keyframes slide-left {
   from {
     transform: translateX(0);
-  } to {
+  }
+  to {
     transform: translateX(-100%);
   }
 }
 
 .photos-slider-right {
-  margin-top: 5px;
+  /* margin-top: 10px; */
   display: inline-block;
   animation: 40s slide-right infinite linear;
 }
@@ -581,11 +588,11 @@ button:hover .button-text {
 @keyframes slide-right {
   from {
     transform: translateX(-100%);
-  } to {
+  }
+  to {
     transform: translateX(0);
   }
 }
-
 
 @keyframes fadeIn {
   from {
