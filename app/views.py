@@ -9,6 +9,7 @@ import shutil
 import zipfile
 import subprocess
 import orjson
+from multiprocessing import Process, Manager
 
 @app.route('/')
 def index():
@@ -105,33 +106,48 @@ def extract_images(file, dir_path):
                 with zip_ref.open(file_info) as source, open(os.path.join(dir_path, os.path.basename(file_info.filename)), 'wb') as target:
                     shutil.copyfileobj(source, target)
 
-def save_every_image_vec_to_json(dir_path) :
-    with open('data/dataset_vec.json', 'w') as f:
-        json.dump([], f, indent=4)
-
-    file_list = os.listdir(dir_path)
-    total_files = len(file_list)
-    counter = 1
-    n = 10
-    delta = total_files - (total_files % n)
-
-    list_data = []
-    for filename in file_list:
-        file_path = os.path.join(dir_path, filename)
-        vec = color_cbir.get_vec_from_hsv_load(file_path)
-        temp_data = {
-            "image_path": file_path,
+def process_file_chunk(file_chunk, result_list):
+    temp_data = []
+    for filename in file_chunk:
+        vec = color_cbir.get_vec_from_hsv_load(filename)
+        temp_data.append({
+            "image_path": filename,
             "vec": str(vec)
-        }
-        list_data.append(temp_data)
-        if counter % n == 0 or (counter > delta):
-            with open('data/dataset_vec.json', 'rb') as f:  # Read bytes
-                dataset = orjson.loads(f.read())
-            dataset.extend(list_data)
-            with open('data/dataset_vec.json', 'wb') as f:  # Write bytes
-                f.write(orjson.dumps(dataset))
-            list_data = []
-        counter += 1
+        })
+    result_list.extend(temp_data)
+
+def save_every_image_vec_to_json(dir_path):
+    with open('data/dataset_vec.json', 'w') as f:
+        f.write(orjson.dumps([]).decode('utf-8'))
+
+    file_list = [os.path.join(dir_path, filename) for filename in os.listdir(dir_path)]
+    total_files = len(file_list)
+
+    # Number of processes
+    num_processes = os.cpu_count()  # Adjust based on your requirement and system capability
+
+    # Creating chunks for each process
+    chunk_size = total_files // num_processes
+    file_chunks = [file_list[i:i + chunk_size] for i in range(0, total_files, chunk_size)]
+
+    with Manager() as manager:
+        # List to store results from each process
+        result_list = manager.list()
+
+        # Creating and starting processes
+        processes = []
+        for chunk in file_chunks:
+            p = Process(target=process_file_chunk, args=(chunk, result_list))
+            processes.append(p)
+            p.start()
+
+        # Waiting for all processes to complete
+        for p in processes:
+            p.join()
+
+        # Write the combined results to file
+        with open('data/dataset_vec.json', 'wb') as f:
+            f.write(orjson.dumps(list(result_list)))
 
 def rust_extract_zip(file, dir_path) :
     zip_file_path = os.path.join(dir_path, file.filename)
