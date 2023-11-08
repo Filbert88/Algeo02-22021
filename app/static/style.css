@@ -144,6 +144,14 @@ body::before {
   width: 100%;
 }
 
+.navbar .textnav.active {
+  font-weight: bold;
+}
+
+.navbar .textnav:not(.active):hover::before {
+  width: 100%;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

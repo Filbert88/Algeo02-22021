@@ -29,10 +29,6 @@ def guides():
 def program():
     return render_template('program.html')
 
-@app.route('/technology')
-def technology():
-    return render_template('technology.html')
-
 @app.route('/upload_image', methods=['POST'])
 def upload_image() :
     if 'image' not in request.files:
