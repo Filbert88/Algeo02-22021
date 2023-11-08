@@ -1,0 +1,31 @@
+<!-- templates/template.html -->
+{% for image in similar_images %}
+<div class="card">
+    <img src="{{ image.img_url }}" alt="Avatar" style="width: 100%">
+    <p>Similarity: {{ image.similarity }}%</p>
+</div>
+{% endfor %}
+
+<!-- Pagination links -->
+<div class="pagination">
+    <ul>
+        {% if page > 1 %}
+            <li><a href="{{ url_for('upload_image', page=1) }}">First</a></li>
+            <li><a href="{{ url_for('upload_image', page=page-1) }}">Previous</a></li>
+        {% endif %}
+
+        <!-- Generate Page Numbers -->
+        {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+                <li class="active"><span>{{ p }}</span></li>
+            {% else %}
+                <li><a href="{{ url_for('upload_image', page=p) }}">{{ p }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page < total_pages %}
+            <li><a href="{{ url_for('upload_image', page=page+1) }}">Next</a></li>
+            <li><a href="{{ url_for('upload_image', page=total_pages) }}">Last</a></li>
+        {% endif %}
+    </ul>
+</div>

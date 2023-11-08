@@ -2,6 +2,7 @@ programcpp/
 program/program_environment/
 program/main.py
 env/
-user_img/
+data/img/dataset
+data/img/user
 __pycache__/
 **/__pycache__/
