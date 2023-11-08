@@ -19,5 +19,5 @@ def get_vector(image: np.ndarray) -> np.ndarray:
 def load_image_as_hsv(image_location: str) -> np.ndarray:
     return cv2.cvtColor(cv2.imread(image_location), cv2.COLOR_BGR2HSV)
 
-def cosine_similarity(vec1, vec2, h_bins=-1, s_bins=-1, v_bins=-1):
-    return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
+def cosine_similarity(vec_1, vec_2):
+    return np.dot(vec_1, vec_2) / (np.linalg.norm(vec_1) * np.linalg.norm(vec_2))
