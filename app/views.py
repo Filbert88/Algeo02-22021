@@ -1,9 +1,8 @@
 from app import app
 import os
 from werkzeug.utils import secure_filename
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory, jsonify
 from app import color_cbir, texture_cbir
-import json
 import numpy as np
 import shutil
 import zipfile
@@ -13,8 +12,8 @@ import time
 
 @app.route('/')
 def index():
-    os.makedirs('data/img/user', exist_ok=True)
-    os.makedirs('data/img/dataset', exist_ok=True)
+    os.makedirs('app/data/img/user', exist_ok=True)
+    os.makedirs('app/data/img/dataset', exist_ok=True)
     return render_template('index.html')
 
 @app.route('/developers')
@@ -29,6 +28,10 @@ def guides():
 def program():
     return render_template('program.html')
 
+@app.route('/dataset_images/<path:filename>')
+def serve_dataset_image(filename):
+    return send_from_directory('data/img/dataset', filename)
+
 @app.route('/upload_image', methods=['GET', 'POST'])
 def upload_image() :
     if 'image' not in request.files:
@@ -42,8 +45,8 @@ def upload_image() :
         file.save(save_path)
         vec = color_cbir.get_vec_from_hsv_load(save_path)
         os.remove(save_path)
-        with open('data/dataset_vec.json', 'rb') as f:
-            dataset = orjson.loads(f)
+        with open('app/data/dataset_vec.json', 'rb') as f:
+            dataset = orjson.loads(f.read())
         
         #HANDLE NO DATA
         if len(dataset) == 0 :
@@ -51,16 +54,18 @@ def upload_image() :
         
         similar_images = []
         for data_el in dataset :
-            similarity = color_cbir.cosine_similarity(vec, np.fromstring(data_el["vec"].strip('[]'), sep=', '))
+            similarity = color_cbir.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
             if similarity >= 0.6 :
                 similar_images.append({
-                    "img_url" : data_el["image_path"],
-                    "similarity" : similarity})
-        
-        for el in similar_images :
-             print(el["img_url"], el["similarity"], "\n")
+                    "filename" : data_el["filename"],
+                    "similarity" : similarity,
+                    "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
+                })
 
-        return "<h1>Search successful</h1>"
+        for el in similar_images :
+            print(el["filename"], el["similarity"])
+        
+        return "<h1>Search Successful</h1>"
     
 @app.route('/reset_message', methods=['GET'])
 def reset_message() :
@@ -77,7 +82,7 @@ def upload_dataset() :
     if file and file.filename.endswith('.zip'):
         dataset_dir = app.config['DATASET_FOLDER']
         start_time = time.time()
-        extract_zip(file, 'data/img')
+        extract_zip(file, dataset_dir)
         end_time = time.time()
         extract_duration = end_time - start_time
         print(f"EXTRACT TIME: {extract_duration}")
@@ -106,17 +111,21 @@ def process_file_chunk(file_chunk, result_list):
         vec_texture = texture_cbir.get_vector_from_image(filename)
         texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
         temp_data.append({
-            "image_path": filename,
+            "filename": filename.split('/')[-1],
             "vec_color": str(vec_color),
             "vec_texture": str(texture)
         })
     result_list.extend(temp_data)
 
+
+def pathjoin(dir, filename) :
+    return dir + '/' + filename
+
 def save_every_image_vec_to_json(dir_path):
-    with open('data/dataset_vec.json', 'wb') as f:
+    with open('app/data/dataset_vec.json', 'wb') as f:
         f.write(orjson.dumps([]))
 
-    file_list = [os.path.join(dir_path, filename) for filename in os.listdir(dir_path)]
+    file_list = [pathjoin(dir_path, filename) for filename in os.listdir(dir_path)]
     total_files = len(file_list)
     
     num_threads = 8
@@ -135,9 +144,9 @@ def save_every_image_vec_to_json(dir_path):
     for thread in threads:
         thread.join()
 
-    with open('data/dataset_vec.json', 'wb') as f:
+    with open('app/data/dataset_vec.json', 'wb') as f:
         f.write(orjson.dumps(thread_results))
 
 def extract_zip(file, dir_path) :
-    output_dir = 'data/img'
+    output_dir = 'app/data/img'
     extract_images_from_zip(file, output_dir)

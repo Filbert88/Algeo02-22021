@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Create Previous button
     const prevBtn = document.createElement("button");
-    prevBtn.textContent = "prev";
+    prevBtn.textContent = "<<";
     prevBtn.disabled = currentPage === 1;
     prevBtn.addEventListener("click", () => showPage(currentPage - 1));
     pageButtonsContainer.appendChild(prevBtn);
@@ -31,22 +31,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create page number buttons
     pageButtons.forEach((button) => {
       const buttonElement = document.createElement("button");
+
+      if (button === currentPage) {
+        buttonElement.classList.add('current-page');
+      }
       buttonElement.textContent = button;
       buttonElement.disabled = button === currentPage;
-      if (button.type === 'ellipsis') {
+
+      if (typeof button === 'number') {
+        buttonElement.addEventListener("click", () => showPage(button));
+      } else if (button.type === 'ellipsis') {
         buttonElement.textContent = "..";
-        buttonElement.disabled = true; 
+        buttonElement.disabled = true;
         buttonElement.classList.add('disabled');
-      } else {
-        buttonElement.textContent = button;
-        buttonElement.addEventListener("click", () => showPage(parseInt(button)));
       }
+
       pageButtonsContainer.appendChild(buttonElement);
     });
   
-    // Create Next button
+   
     const nextBtn = document.createElement("button");
-    nextBtn.textContent = "next";
+    nextBtn.textContent = ">>";
     nextBtn.disabled = currentPage === totalPages;
     nextBtn.addEventListener("click", () => showPage(currentPage + 1));
     pageButtonsContainer.appendChild(nextBtn);

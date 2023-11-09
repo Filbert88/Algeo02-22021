@@ -40,10 +40,9 @@
     </header>
     <h1 class="title">Reverse Image Search</h1>
     <form
-      hx-post="/upload_image"
-      hx-encoding="multipart/form-data"
+      hx-post="/upload_image" 
+      hx-encoding="multipart/form-data" 
       hx-target="#preview_2"
-      hx-swap="innerHTML"
     >
       <div class="submit">
         <input
@@ -80,10 +79,10 @@
     <div class="card-result">
       <h1>Result</h1>
     </div>
-    <div class="card-container">
+    <div class="card-container" id="card-container">
       <div class="card">
         <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          src="data/img/dataset/02.jpg"
           alt="Avatar"
           style="width: 100%"
         />
