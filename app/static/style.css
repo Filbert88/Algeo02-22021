@@ -717,25 +717,26 @@ button:hover .button-text {
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  background: #2b2b2b;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: whitesmoke;
+  position: relative; /* For pseudo-element positioning */
+
 }
 
-.tech-card:hover {
-  transform: translateY(-5px);
-  /* transform: scale(1.1); */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.tech-card:hover img{
+  transform: translateY(-5px)scale(1.05);
+  filter: brightness(1.2);
 }
 
 .tech-card img {
   width: 200px; /* Adjust size as needed */
   height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .tech-card p {
-  font-size: 1rem;
-  color: whitesmoke;
+  font-size: 16px;
+  color: #2b2b2b;
+
   margin-top: 10px;
 }
