@@ -8,8 +8,16 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
-    <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">  
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/icon.jpg') }}"
+      type="image/jpg"
+    />
     <style>
       #preview img {
         /* Just for demonstration */
@@ -19,6 +27,7 @@
     </style>
     <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='pagination.js') }}"></script>
   </head>
   <body>
     <header class="header">
@@ -58,13 +67,18 @@
       </div>
     </form>
     <div id="dataset-upload">
-      <form hx-post="/upload_dataset" hx-target="#dataset-upload" hx-swap="afterend" enctype="multipart/form-data">
-          <input type="file" name="zipfile" accept=".zip">
-          <input type="submit" value="Upload Dataset">
+      <form
+        hx-post="/upload_dataset"
+        hx-target="#dataset-upload"
+        hx-swap="afterend"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="zipfile" accept=".zip" />
+        <input type="submit" value="Upload Dataset" />
       </form>
     </div>
     <div class="card-result">
-        <h1>Result</h1>
+      <h1>Result</h1>
     </div>
     <div class="card-container">
       <div class="card">
@@ -73,7 +87,7 @@
           alt="Avatar"
           style="width: 100%"
         />
-        <p>Similarity: 69%</p>
+        <p>Similarity: 1%</p>
         <a
           href="{{ url_for('static', filename='img/img_avatar.png') }}"
           download="myimage"
@@ -86,7 +100,7 @@
           alt="Avatar"
           style="width: 100%"
         />
-        <p>Similarity: 33.3%</p>
+        <p>Similarity: 2%</p>
         <a
           href="{{ url_for('static', filename='img/img_avatar.png') }}"
           download="myimage"
@@ -99,7 +113,332 @@
           alt="Avatar"
           style="width: 100%"
         />
-        <p>Similarity: 45%</p>
+        <p>Similarity: 3%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 4%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 5%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 6%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 7%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 8%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 9%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 10%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 11%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 12%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 13%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 14%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 15%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 16%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 17%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 18%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 19%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 20%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 21%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 22%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 23%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 24%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 25%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 26%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 27%</p>
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
+          class="download-btn"
+        ></a>
+      </div>
+      <div class="card">
+        <img
+          src="{{ url_for('static', filename='img/img_avatar.png') }}"
+          alt="Avatar"
+          style="width: 100%"
+        />
+        <p>Similarity: 28%</p>
         <a
           href="{{ url_for('static', filename='img/img_avatar.png') }}"
           download="myimage"
@@ -113,11 +452,18 @@
           style="width: 100%"
         />
         <p>Similarity: 29%</p>
-        <a 
-          href="{{ url_for('static', filename='img/img_avatar.png') }}" 
-          download="myimage" 
+        <a
+          href="{{ url_for('static', filename='img/img_avatar.png') }}"
+          download="myimage"
           class="download-btn"
         ></a>
+      </div>
+    </div>
+    <div class="pagination">
+      <div id="page-buttons">
+        <button id="prev-btn">Pre vious</button>
+        <span id="page-number">1</span>
+        <button id="next-btn">Next</button>
       </div>
     </div>
   </body>

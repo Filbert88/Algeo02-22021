@@ -641,3 +641,39 @@ button:hover .button-text {
     opacity: 1;
   }
 }
+
+/* pagination */
+/* Pagination container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Buttons for previous and next */
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Page number display */
+#page-number {
+  font-size: 1rem;
+  margin: 0 5px;
+}
