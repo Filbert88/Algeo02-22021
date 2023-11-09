@@ -33,10 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const buttonElement = document.createElement("button");
       buttonElement.textContent = button;
       buttonElement.disabled = button === currentPage;
-      if (button !== "...") {
-        buttonElement.addEventListener("click", () =>
-          showPage(parseInt(button))
-        );
+      if (button.type === 'ellipsis') {
+        buttonElement.textContent = "..";
+        buttonElement.disabled = true; 
+        buttonElement.classList.add('disabled');
+      } else {
+        buttonElement.textContent = button;
+        buttonElement.addEventListener("click", () => showPage(parseInt(button)));
       }
       pageButtonsContainer.appendChild(buttonElement);
     });
@@ -54,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const pageButtons = [];
     const maxVisiblePages = 5;
 
+    const ellipsis = { type: 'ellipsis' };
+
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
         pageButtons.push(i);
@@ -63,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const rightEllipsis = currentPage < totalPages - 2;
 
       if (leftEllipsis) {
-        pageButtons.push(1, "..");
+        pageButtons.push(1, ellipsis);
       }
 
       let startPage = currentPage;
@@ -101,18 +106,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (rightEllipsis) {
-        pageButtons.push("..", totalPages);
+        pageButtons.push(ellipsis, totalPages);
       }
     }
 
     return pageButtons;
   }
   
- 
-
-  
-
-  // Initialize
   showPage(1);
   updatePageButtons();
 });
