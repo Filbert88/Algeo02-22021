@@ -1,7 +1,7 @@
 programcpp/
 program/program_environment/
-program/main.py
 env/
 user_img/
 __pycache__/
 **/__pycache__/
+/rust_zip_extractor/target/
