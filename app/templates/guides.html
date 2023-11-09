@@ -18,7 +18,10 @@
       href="{{ url_for('static', filename='img/icon.jpg') }}"
       type="image/jpg"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+    />
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
@@ -32,27 +35,91 @@
       </nav>
     </header>
     <div class="guides-wrapper">
-      <div class="guides-container">
-        <h1 data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">How to Use PixPlore</h1>
-        <section data-aos="fade-right" data-aos-delay="400" data-aos-duration="1000" class="guide-section">
-          <h2>Getting Started</h2>
-          <p>Instructions on how to get started with PixPlore...</p>
+      <!-- <div class="guides-container">
+        <h1 data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+          What is PixPlore ?
+        </h1>
+        <section
+          data-aos="fade-right"
+          data-aos-delay="400"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
+          <p>
+            Pixplore is bla bla bla bla ... Lorem ipsum, dolor sit amet
+            consectetur adipisicing elit. Ex esse earum pariatur reprehenderit,
+            ab, voluptatum iusto provident ut mollitia error porro itaque
+            exercitationem nostrum tempore debitis dicta commodi aut
+            dignissimos.
+          </p>
         </section>
-        <section data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000" class="guide-section">
+        <section
+          data-aos="fade-right"
+          data-aos-delay="500"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
           <h2>Uploading Images</h2>
           <p>Detailed steps on how to upload and manage images...</p>
         </section>
-        <section data-aos="fade-right" data-aos-delay="600" data-aos-duration="1000" class="guide-section">
+        <section
+          data-aos="fade-right"
+          data-aos-delay="600"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
           <h2>Searching and Exploring</h2>
           <p>Tips on how to effectively search and explore images...</p>
         </section>
-        <section data-aos="fade-right" data-aos-delay="700" data-aos-duration="1000" class="guide-section">
+      </div> -->
+      <div class="guides-container">
+        <h1 data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+          How to Use PixPlore
+        </h1>
+        <section
+          data-aos="fade-right"
+          data-aos-delay="400"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
+          <h2>Getting Started</h2>
+          <p>Instructions on how to get started with PixPlore...</p>
+        </section>
+        <section
+          data-aos="fade-right"
+          data-aos-delay="500"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
+          <h2>Uploading Images</h2>
+          <p>Detailed steps on how to upload and manage images...</p>
+        </section>
+        <section
+          data-aos="fade-right"
+          data-aos-delay="600"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
+          <h2>Searching and Exploring</h2>
+          <p>Tips on how to effectively search and explore images...</p>
+        </section>
+        <section
+          data-aos="fade-right"
+          data-aos-delay="700"
+          data-aos-duration="1000"
+          class="guide-section"
+        >
           <h2>Additional Features</h2>
           <p>Information about additional features and how to use them...</p>
         </section>
       </div>
 
-      <div data-aos="fade-right" data-aos-delay="800" data-aos-duration="1000" class="guide-container">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="800"
+        data-aos-duration="1000"
+        class="guide-container"
+      >
         <a href="{{ url_for('program') }}">
           <button class="learn-more">
             <span class="circle" aria-hidden="true">
@@ -66,7 +133,7 @@
     <script src="{{ url_for('static', filename='scroll.js')}}"></script>
     <script>
       AOS.init({
-        disable: 'mobile'
+        disable: "mobile",
       });
     </script>
   </body>

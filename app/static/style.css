@@ -166,7 +166,7 @@ body::before {
 }
 
 .navbar .textnav.active {
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .navbar .textnav:not(.active):hover::before {
@@ -223,7 +223,7 @@ body::before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 90px;
+  padding: 20px 90px 20px 90px;
 }
 
 .card {
@@ -422,6 +422,13 @@ body::before {
   color: #888;
 }
 
+.card-result{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .github-logo {
   width: 30px;
   height: 30px;
@@ -441,7 +448,7 @@ body::before {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
