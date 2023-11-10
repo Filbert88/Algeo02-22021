@@ -1,0 +1,24 @@
+<div class="card-container" id="card-container">
+    {% for item in data %}
+    <div class="card">
+        <img src="{{ item.image_url }}" alt="Avatar" style="width: 100%" />
+        <p>Similarity: {{ item.similarity }}%</p>
+        <a href="{{ item.image_url }}" download="myimage" class="download-btn"></a>
+    </div>
+    {% endfor %}
+</div>
+<div class="pagination">
+    <div id="page-buttons">
+        <button hx-get="/paginate?page=1" hx-target="#pagination-target" hx-swap="innerHTML" hx-trigger="click" {% if
+            current_page==1 %}disabled{% endif %}>First</button>
+        <button hx-get="/paginate?page={{ current_page - 1 }}" hx-target="#pagination-target" hx-swap="innerHTML"
+            hx-trigger="click" hx-boost="true" {% if current_page==1 %}disabled{% endif %}
+            id="prev-btn">Previous</button>
+        <span id="page-number">{{ current_page }}/{{ total_pages }}</span>
+        <button hx-get="/paginate?page={{ current_page + 1 }}" hx-target="#pagination-target" hx-swap="innerHTML"
+            hx-trigger="click" hx-boost="true" {% if current_page==total_pages %}disabled{% endif %}
+            id="next-btn">Next</button>
+        <button hx-get="/paginate?page={{ total_pages }}" hx-target="#pagination-target" hx-swap="innerHTML"
+            hx-trigger="click" {% if current_page==total_pages %}disabled{% endif %}>Last</button>
+    </div>
+</div>

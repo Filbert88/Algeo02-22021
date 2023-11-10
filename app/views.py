@@ -12,6 +12,8 @@ import time
 
 @app.route('/')
 def index():
+    with open('app/data/dataset_vec.json', 'wb') as f:
+        f.write(orjson.dumps([]))
     os.makedirs('app/data/img/user', exist_ok=True)
     os.makedirs('app/data/img/dataset', exist_ok=True)
     return render_template('index.html')
@@ -51,7 +53,7 @@ def upload_image() :
         
         #HANDLE NO DATA
         if len(dataset) == 0 :
-            return "<h1>No Data in Dataset</h1>"
+            return "<div class='errorMsg'>No Data in Dataset</div>"
         
         similar_images = []
         for data_el in dataset :
@@ -59,7 +61,7 @@ def upload_image() :
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : str(round(similarity, 2)),
+                    "similarity" : str(round(similarity, 4)),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
@@ -68,11 +70,10 @@ def upload_image() :
         for el in similar_images :
             print(el["filename"], el["similarity"])
         
-        similar_images.append(str(duration))
         with open('app/data/result.json', 'wb') as f:
             f.write(orjson.dumps(similar_images))
         
-        return f"<p>Result</p><p>{len(similar_images)} Result in {duration} Seconds</p>"
+        return render_template('result.html', result=len(similar_images), duration=duration)
 
 @app.route('/upload_zip', methods=['POST'])
 def upload_zip() :
@@ -184,3 +185,22 @@ def upload_folder():
 
 def pathjoin(dir, filename) :
     return dir + '/' + filename
+
+@app.route('/paginate', methods=['GET'])
+def paginate() :
+    page = int(request.args.get('page', 1))
+    items_per_page = 4
+    with open('app/data/result.json', 'rb') as f:
+            data = orjson.loads(f.read())
+    start_index = (page - 1) * items_per_page
+    end_index = start_index + items_per_page
+    if (len(data) / items_per_page) > (len(data) // items_per_page) :
+        total_pages = len(data)//items_per_page + 1
+    else :
+        total_pages = len(data)//items_per_page
+    
+    paginated_data = data[start_index:end_index]
+    for el in paginated_data :
+        el["similarity"] = str(float(el["similarity"]) * 100)
+
+    return render_template('pagination_template.html', data=paginated_data, current_page=page, total_pages=total_pages)

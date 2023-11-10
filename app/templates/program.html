@@ -48,7 +48,8 @@
         <div class="text-img">Upload Dataset</div>
       </div>
       <div class="form-container">
-        <form id="searchForm" hx-post="/upload_image" hx-encoding="multipart/form-data" hx-target="#card-result", hx-swap="innerHTML">
+        <form id="searchForm" hx-post="/upload_image" hx-encoding="multipart/form-data" hx-target="#search-result" ,
+          hx-swap="innerHTML">
           <input type="file" id="imageInput" name="image" accept=".jpg, .jpeg, .png" style="display: none"
             onchange="handleFiles(this.files); showFileName(this.files);" />
           <label for="imageInput" class="custom-file-upload">Insert An Image</label>
@@ -71,46 +72,13 @@
       </div>
     </div>
   </div>
-
-
   <div class="bar-container">
     <hr class="horizontal-bar">
     </hr>
   </div>
 
-  <div class="card-result" id="card-result">
-    <p>Result</p>
-    <p>100 Result in 0.52 Seconds</p>
-  </div>
-  <div class="card-container" id="card-container">
-    <div class="card">
-      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
-      <p>Similarity: 1%</p>
-      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
-    </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
-      <p>Similarity: 2%</p>
-      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
-    </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
-      <p>Similarity: 3%</p>
-      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
-    </div>
-    <div class="card">
-      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
-      <p>Similarity: 4%</p>
-      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
-    </div>
-  </div>
-  <div class="pagination">
-    <div id="page-buttons">
-      <button id="prev-btn">Previous</button>
-      <span id="page-number">current_page/total_page</span>
-      <button id="next-btn">Next</button>
-    </div>
-  </div>
+  <div id="search-result"></div>
+  <div id="pagination-target"></div>
   <div id="popup-container"></div>
 </body>
 
