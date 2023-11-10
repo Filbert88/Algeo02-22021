@@ -1,0 +1,8 @@
+<div class="popup-backdrop">
+    <div class="popup" id="popup">
+        <h2>Choose Upload Type</h2>
+        <button hx-get="/upload_zip_form" hx-target="#popup" hx-swap="innerHTML">Upload ZIP</button>
+        <button hx-get="/upload_folder_form" hx-target="#popup" hx-swap="innerHTML">Upload Folder</button>
+        <button hx-get="/close_upload_form" hx-target="#popup-container" hx-swap="innerHTML" class="close-button">X</button>
+    </div>
+</div>

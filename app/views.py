@@ -1,7 +1,7 @@
 from app import app
 import os
 from werkzeug.utils import secure_filename
-from flask import Flask, request, render_template, redirect, url_for, send_from_directory, jsonify
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory
 from app import color_cbir, texture_cbir
 import numpy as np
 import shutil
@@ -32,7 +32,7 @@ def program():
 def serve_dataset_image(filename):
     return send_from_directory('data/img/dataset', filename)
 
-@app.route('/upload_image', methods=['GET', 'POST'])
+@app.route('/upload_image', methods=['POST'])
 def upload_image() :
     if 'image' not in request.files:
         return redirect(request.url)
@@ -40,6 +40,7 @@ def upload_image() :
     if file.filename == '':
         return redirect(request.url)
     if file:
+        start = time.time()
         filename = secure_filename(file.filename)
         save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(save_path)
@@ -62,17 +63,15 @@ def upload_image() :
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
 
+        end = time.time()
+        duration = round(end - start, 2)
         for el in similar_images :
             print(el["filename"], el["similarity"])
         
-        return "<h1>Search Successful</h1>"
-    
-@app.route('/reset_message', methods=['GET'])
-def reset_message() :
-    return ""
+        return f"<p>Result</p><p>{len(similar_images)} Result in {duration} Seconds</p>"
 
-@app.route('/upload_dataset', methods=['POST'])
-def upload_dataset() :
+@app.route('/upload_zip', methods=['POST'])
+def upload_zip() :
     if 'zipfile' not in request.files:
             print("NO FILE PART")
             return "NO FILE PART"
@@ -82,7 +81,7 @@ def upload_dataset() :
     if file and file.filename.endswith('.zip'):
         dataset_dir = app.config['DATASET_FOLDER']
         start_time = time.time()
-        extract_zip(file, dataset_dir)
+        extract_images_from_zip(file, dataset_dir)
         end_time = time.time()
         extract_duration = end_time - start_time
         print(f"EXTRACT TIME: {extract_duration}")
@@ -91,10 +90,10 @@ def upload_dataset() :
         end_time = time.time()
         process_duration = end_time - start_time
         print(f"PROCESS DATASET TIME: {process_duration}")
-        return '<h1>File successfully uploaded and images extracted.</h1>'
+        return render_template('success.html')
 
 def extract_images_from_zip(file, dir_path):
-    dataset_folder = os.path.join(dir_path, 'dataset')
+    dataset_folder = dir_path
     if os.path.exists(dataset_folder) and os.path.isdir(dataset_folder):
         shutil.rmtree(dataset_folder)
     os.makedirs(dataset_folder)
@@ -103,6 +102,7 @@ def extract_images_from_zip(file, dir_path):
             if file_info.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
                 with zip_ref.open(file_info) as source, open(os.path.join(dataset_folder, os.path.basename(file_info.filename)), 'wb') as target:
                     shutil.copyfileobj(source, target)
+
 
 def process_file_chunk(file_chunk, result_list):
     temp_data = []
@@ -116,10 +116,6 @@ def process_file_chunk(file_chunk, result_list):
             "vec_texture": str(texture)
         })
     result_list.extend(temp_data)
-
-
-def pathjoin(dir, filename) :
-    return dir + '/' + filename
 
 def save_every_image_vec_to_json(dir_path):
     with open('app/data/dataset_vec.json', 'wb') as f:
@@ -147,6 +143,43 @@ def save_every_image_vec_to_json(dir_path):
     with open('app/data/dataset_vec.json', 'wb') as f:
         f.write(orjson.dumps(thread_results))
 
-def extract_zip(file, dir_path) :
-    output_dir = 'app/data/img'
-    extract_images_from_zip(file, output_dir)
+@app.route('/close_upload_form', methods=['GET'])
+def close_form():
+    return ""
+
+@app.route('/upload_popup', methods=['GET'])
+def upload_popup():
+    return render_template('upload_popup.html')
+
+@app.route('/upload_zip_form', methods=['GET'])
+def upload_zip_form():
+    return render_template('upload_zip_form.html')
+
+@app.route('/upload_folder_form', methods=['GET'])
+def upload_folder_form():
+    return render_template('upload_folder_form.html')
+
+@app.route('/upload_folder', methods=['POST'])
+def upload_folder():
+    app.config['MAX_CONTENT_LENGTH'] = None
+    uploaded_files = request.files.getlist('files[]')
+    dataset_folder = 'app/data/img/dataset/'
+    if os.path.exists(dataset_folder) and os.path.isdir(dataset_folder):
+        shutil.rmtree(dataset_folder)
+    os.makedirs(dataset_folder)
+
+    for file in uploaded_files:
+        if file.filename != '':
+            filename = secure_filename(file.filename)
+            file.save(pathjoin(dataset_folder, filename))
+
+    start_time = time.time()
+    save_every_image_vec_to_json(dataset_folder)
+    end_time = time.time()
+    process_duration = end_time - start_time
+    print(f"PROCESS DATASET TIME: {process_duration}")
+    
+    return render_template('success.html')
+
+def pathjoin(dir, filename) :
+    return dir + '/' + filename

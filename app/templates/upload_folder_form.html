@@ -1,0 +1,7 @@
+<h2>Upload Folder</h2>
+<form hx-post="/upload_folder" enctype="multipart/form-data" hx-target="#popup" hx-swap="innerHTML"
+      data-prompt-for="files[]">
+    <input type="file" name="files[]" accept=".jpg, .jpeg, .png" multiple webkitdirectory directory>
+    <input type="submit" value="Upload Folder">
+    <button hx-get="/upload_popup" hx-target="#popup-container" hx-swap="innerHTML" class="close-button">X</button>
+</form>

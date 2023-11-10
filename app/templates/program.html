@@ -1,184 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PixPlore | App</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styleProgram.css') }}"
-    />
-    <link
-      rel="icon"
-      href="{{ url_for('static', filename='img/icon.jpg') }}"
-      type="image/jpg"
-    />
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='img/icon.jpg') }}"
-      type="image/jpg"
-    />
-    <style>
-      #preview img {
-        /* Just for demonstration */
-        max-width: 500px;
-        max-height: 498px;
-      }
-    </style>
-    <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='pagination.js') }}"></script> -->
-  </head>
-  <body>
-    <header class="header">
-      <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
-      <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="textnav">/Home</a>
-        <a href="{{ url_for('developers') }}" class="textnav">/Developers</a>
-        <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
-      </nav>
-    </header>
 
-    <h1 class="title">Reverse Image Search</h1>
-      <div class="photo-container">
-        <div class="photo-box">
-          <div id="preview"></div>
-          <span id="file-chosen">No file chosen</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixPlore | App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styleProgram.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+  <style>
+    #preview img {
+      max-width: 500px;
+      max-height: 498px;
+    }
+  </style>
+  <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+  <script src="{{ url_for('static', filename='scroll.js')}}"></script>
+  <script src="{{ url_for('static', filename='formsubmit.js') }}"></script>
+  <!-- <script src="{{ url_for('static', filename='pagination.js') }}"></script> -->
+</head>
+
+<body>
+  <header class="header">
+    <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+    <nav class="navbar">
+      <a href="{{ url_for('index') }}" class="textnav">/Home</a>
+      <a href="{{ url_for('developers') }}" class="textnav">/Developers</a>
+      <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
+    </nav>
+  </header>
+
+  <h1 class="title">Reverse Image Search</h1>
+  <div class="photo-container">
+    <div class="photo-box">
+      <div id="preview"></div>
+      <span id="file-chosen">No file chosen</span>
+    </div>
+
+    <div class="right-panel">
+      <div class="text-how">How To Use ?</div>
+      <div class="text-container">
+        <div class="text-img">Upload Image</div>
+        <div class="text-img">Upload Dataset</div>
+      </div>
+      <div class="form-container">
+        <form id="searchForm" hx-post="/upload_image" hx-encoding="multipart/form-data" hx-target="#card-result", hx-swap="innerHTML">
+          <input type="file" id="imageInput" name="image" accept=".jpg, .jpeg, .png" style="display: none"
+            onchange="handleFiles(this.files); showFileName(this.files);" />
+          <label for="imageInput" class="custom-file-upload">Insert An Image</label>
+          <input type="submit" id="hiddenSubmitButton" style="display: none" />
+        </form>
+        <button class="upload-dataset-btn" hx-get="/upload_popup" hx-target="#popup-container"
+          hx-swap="innerHTML">Insert Dataset</button>
+      </div>
+      <div class="text-img">Search Toggle</div>
+      <div class="toggle-wrapper">
+        <div class="toggle-container">
+          <input type="radio" id="color" name="search-toggle" value="color" checked />
+          <label for="color" class="toggle-label">Color</label>
+          <input type="radio" id="texture" name="search-toggle" value="texture" />
+          <label for="texture" class="toggle-label">Texture</label>
         </div>
-  
-        <div class="right-panel">
-          <div class="text-how">How To Use ?</div>
-          <div class="text-container">
-            <div class="text-img">Upload Image</div>
-            <div class="text-img">Upload Dataset</div>
-          </div>
-          <div class="form-container">
-            <form
-              hx-post="/upload_image"
-              hx-encoding="multipart/form-data"
-              hx-target="#preview_2"
-            >
-              <input
-                hx-get="/reset_message"
-                hx-target="#preview_2"
-                hx-swap="innerHTML"
-                type="file"
-                id="imageInput"
-                name="image"
-                accept=".jpg, .jpeg, .png"
-                style="display: none"
-                onchange="handleFiles(this.files); showFileName(this.files);"
-              />
-              <label for="imageInput" class="custom-file-upload"
-                >Insert An Image</label
-              >
-            </form>
-  
-            <button class="upload-dataset-btn">Insert Dataset</button>
-          </div>
-          <div class="text-img">Search Toggle</div>
-          <div class="toggle-wrapper">
-            <div class="toggle-container">
-              <input
-                type="radio"
-                id="color"
-                name="search-toggle"
-                value="color"
-                checked
-              />
-              <label for="color" class="toggle-label">Color</label>
-  
-              <input
-                type="radio"
-                id="texture"
-                name="search-toggle"
-                value="texture"
-              />
-              <label for="texture" class="toggle-label">Texture</label>
-            </div>
-  
-            <div class="search-button">
-              <button type="submit" id="searchButton">Search</button>
-            </div>
-          </div>
-  
-          <div id="preview_2"></div>
+        <div class="search-button">
+          <button type="submit" id="searchButton">Search</button>
         </div>
       </div>
-  
-    
-    <div class="bar-container">
-      <hr class="horizontal-bar"></hr>
     </div>
-    
-    <div class="card-result">
-      <p>Result</p>
-      <p>100 Result in 0.52 Seconds</p>
+  </div>
+
+
+  <div class="bar-container">
+    <hr class="horizontal-bar">
+    </hr>
+  </div>
+
+  <div class="card-result" id="card-result">
+    <p>Result</p>
+    <p>100 Result in 0.52 Seconds</p>
+  </div>
+  <div class="card-container" id="card-container">
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
+      <p>Similarity: 1%</p>
+      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
     </div>
-    <div class="card-container" id="card-container">
-      <div class="card">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <p>Similarity: 1%</p>
-        <a
-          href="{{ url_for('static', filename='img/img_avatar.png') }}"
-          download="myimage"
-          class="download-btn"
-        ></a>
-      </div>
-      <div class="card">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <p>Similarity: 2%</p>
-        <a
-          href="{{ url_for('static', filename='img/img_avatar.png') }}"
-          download="myimage"
-          class="download-btn"
-        ></a>
-      </div>
-      <div class="card">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <p>Similarity: 3%</p>
-        <a
-          href="{{ url_for('static', filename='img/img_avatar.png') }}"
-          download="myimage"
-          class="download-btn"
-        ></a>
-      </div>
-      <div class="card">
-        <img
-          src="{{ url_for('static', filename='img/img_avatar.png') }}"
-          alt="Avatar"
-          style="width: 100%"
-        />
-        <p>Similarity: 4%</p>
-        <a
-          href="{{ url_for('static', filename='img/img_avatar.png') }}"
-          download="myimage"
-          class="download-btn"
-        ></a>
-      </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
+      <p>Similarity: 2%</p>
+      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
     </div>
-    <div class="pagination">
-      <div id="page-buttons">
-        <button id="prev-btn">Previous</button>
-        <span id="page-number">1</span>
-        <button id="next-btn">Next</button>
-      </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
+      <p>Similarity: 3%</p>
+      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
     </div>
-  </body>
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="Avatar" style="width: 100%" />
+      <p>Similarity: 4%</p>
+      <a href="{{ url_for('static', filename='img/img_avatar.png') }}" download="myimage" class="download-btn"></a>
+    </div>
+  </div>
+  <div class="pagination">
+    <div id="page-buttons">
+      <button id="prev-btn">Previous</button>
+      <span id="page-number">current_page/total_page</span>
+      <button id="next-btn">Next</button>
+    </div>
+  </div>
+  <div id="popup-container"></div>
+</body>
+
 </html>

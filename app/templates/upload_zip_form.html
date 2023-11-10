@@ -1,0 +1,6 @@
+<h2>Upload ZIP</h2>
+<form hx-post="/upload_zip" enctype="multipart/form-data" hx-target="#popup" hx-swap="innerHTML">
+    <input type="file" name="zipfile" accept=".zip">
+    <input type="submit" value="Upload ZIP">
+    <button hx-get="/upload_popup" hx-target="#popup-container" hx-swap="innerHTML" class="close-button">X</button>
+</form>
