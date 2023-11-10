@@ -59,14 +59,18 @@ def upload_image() :
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : similarity,
+                    "similarity" : str(round(similarity, 2)),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
-
+        similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
         end = time.time()
         duration = round(end - start, 2)
         for el in similar_images :
             print(el["filename"], el["similarity"])
+        
+        similar_images.append(str(duration))
+        with open('app/data/result.json', 'wb') as f:
+            f.write(orjson.dumps(similar_images))
         
         return f"<p>Result</p><p>{len(similar_images)} Result in {duration} Seconds</p>"
 
@@ -118,9 +122,6 @@ def process_file_chunk(file_chunk, result_list):
     result_list.extend(temp_data)
 
 def save_every_image_vec_to_json(dir_path):
-    with open('app/data/dataset_vec.json', 'wb') as f:
-        f.write(orjson.dumps([]))
-
     file_list = [pathjoin(dir_path, filename) for filename in os.listdir(dir_path)]
     total_files = len(file_list)
     
