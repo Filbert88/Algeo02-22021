@@ -81,29 +81,6 @@ body {
   transform: scale(1.05);
 }
 
-.title {
-  text-align: center;
-  font-size: 40px;
-  font-style: italic;
-}
-
-.submit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: auto;
-}
-
-.custom-file-upload {
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  margin-top: 10px;
-}
-
 .getStarted {
   background-color: #2b2b2b;
   color: #f9f1ee;
@@ -425,13 +402,6 @@ body {
   color: #888;
 }
 
-.card-result {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 30px;
-}
-
 .github-logo {
   width: 30px;
   height: 30px;
@@ -651,12 +621,13 @@ button:hover .button-text {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
-.pagination button {
+.pagination button, #page-number {
   padding: 12px 18px;
   font-weight: bold;
-  margin: 0 5px;
+  /* margin: 0 5px; */
   background-color: #2b2b2b;
   color: white;
   border: none;
@@ -666,30 +637,26 @@ button:hover .button-text {
 }
 
 .pagination button:hover:not(.current-page) {
-  background-color: darkgray; 
+  background-color: darkgray;
 }
 
 .pagination button:disabled {
   cursor: not-allowed;
-  background-color: #2b2b2b; 
-  color: white; 
-  font-weight: bold
+  background-color: #2b2b2b;
+  color: white;
+  font-weight: bold;
 }
 
 .pagination button.current-page {
-  background-color: white; 
-  color: #2b2b2b; 
-  font-weight: bold; 
+  background-color: white;
+  color: #2b2b2b;
+  font-weight: bold;
 }
 
 .pagination button.current-page:hover {
-  background-color: white; 
+  background-color: white;
 }
 
-#page-number {
-  font-size: 1rem;
-  margin: 0 5px;
-}
 
 .tech-stack {
   text-align: center;
@@ -720,11 +687,10 @@ button:hover .button-text {
   padding: 20px;
   color: whitesmoke;
   position: relative; /* For pseudo-element positioning */
-
 }
 
-.tech-card:hover img{
-  transform: translateY(-5px)scale(1.05);
+.tech-card:hover img {
+  transform: translateY(-5px) scale(1.05);
   filter: brightness(1.2);
 }
 
