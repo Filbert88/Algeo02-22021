@@ -624,7 +624,7 @@ button:hover .button-text {
   margin-bottom: 50px;
 }
 
-.pagination button, #page-number {
+.pagination button {
   padding: 12px 18px;
   font-weight: bold;
   /* margin: 0 5px; */
@@ -657,6 +657,15 @@ button:hover .button-text {
   background-color: white;
 }
 
+#page-number {
+  display: inline-block;
+  padding: 12px 18px;
+  background-color: #2b2b2b;
+  color: white; 
+  border-radius: 2px;
+  font-size: 1rem;
+  border: 1px solid white; 
+}
 
 .tech-stack {
   text-align: center;
