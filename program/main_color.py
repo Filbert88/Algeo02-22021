@@ -12,8 +12,7 @@ def compare_global_color(location_1, location_2):
     return similarity
 
 
-
-if __name__ == "__main__":
+def compare_global_color():
     l = []
     for i in range(50):
         num = i + 1
@@ -34,4 +33,10 @@ if __name__ == "__main__":
             output_image = i + 1
         
     print(output_image, similarity)
-    
+
+
+if __name__ == "__main__":
+    location_1 = ""
+    location_2 = ""
+
+    print(compare_spatially(location_1, location_2))    

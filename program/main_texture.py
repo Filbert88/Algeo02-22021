@@ -4,7 +4,7 @@ import time
 
 
 if __name__ == "__main__":
-    input_num = 5
+    input_num = 42
     input = load_image_as_grayscale(f"/home/azzmi/projects/Algeo02-22021/images/plastic/{input_num}.jpg")
     input_vector = get_vector(get_co_occurence_matrix(input))
 
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     output_num = -1
     output_distance = 1e15
 
-    for i in range(50):
+    for i in range(1):
         file_num = i + 1
         if file_num == input_num:
             continue
