@@ -46,24 +46,17 @@ def resize(image: np.ndarray, width, height) -> np.ndarray:
 
 
 h_ranges_spatial = np.array([[0, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 148], [148.5, 157.5], [158.0, 180.0]])
-s_ranges_spatial = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
-v_ranges_spatial = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
+# s_ranges_spatial = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
+# v_ranges_spatial = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
 # s_ranges_spatial = np.array([[0, 180], [181, 255]])
 # v_ranges_spatial = np.array([[0, 180], [181, 255]])
-# s_ranges_spatial = np.array([[0, 255]])
-# v_ranges_spatial = np.array([[0, 255]])
+s_ranges_spatial = np.array([[0, 255]])
+v_ranges_spatial = np.array([[0, 255]])
 
 def get_vector_spatial(image: np.ndarray) -> np.ndarray:
-    # h_masks = [(h[0] <= image[:, :, 0]) & (image[:, :, 0] <= h[1]) for h in h_ranges_spatial]
-    
-    # color_vector = [np.sum((hm)) for hm in h_masks]
-
-    # return color_vector
-
     h = round(image[:, :, 0].mean())
     s = round(image[:, :, 1].mean())
     v = round(image[:, :, 2].mean())
-    # print(h,s,v)
     h_index = np.where((h >= h_ranges_spatial[:, 0]) & (h <= h_ranges_spatial[:, 1]))[0]
     s_index = np.where((s >= s_ranges_spatial[:, 0]) & (s <= s_ranges_spatial[:, 1]))[0]
     v_index = np.where((v >= v_ranges_spatial[:, 0]) & (v <= v_ranges_spatial[:, 1]))[0]
@@ -83,4 +76,4 @@ def compare_spatially(input_image_location: str, dataset_image_location: str):
     input_submatrices = split(input_image, 3, 3)
     dataset_submatrices = split(dataset_image, 3, 3)
 
-    return sum([cosine_similarity(get_vector_spatial(matrix_1), get_vector_spatial(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)])
+    return sum([cosine_similarity(get_vector_spatial(matrix_1), get_vector_spatial(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)]) / ((201 / 3) ** 2)
