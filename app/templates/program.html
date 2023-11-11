@@ -20,6 +20,7 @@
   <script src="{{ url_for('static', filename='scroll.js')}}"></script>
   <script src="{{ url_for('static', filename='formsubmit.js') }}"></script>
   <script src="{{ url_for('static', filename='handlefile.js') }}"></script>
+  <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
   <!-- <script src="{{ url_for('static', filename='pagination.js') }}"></script> -->
 </head>
 
@@ -33,8 +34,8 @@
     </nav>
   </header>
 
-  <h1 class="title">Reverse Image Search</h1>
-  <div class="photo-container">
+  <h1 class="title fade-in-down">Reverse Image Search</h1>
+  <div class="photo-container fade-in-up">
     <div class="photo-box">
       <div id="preview" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
         <p>Drag an image file here, or click to select a file.</p>

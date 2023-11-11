@@ -275,6 +275,7 @@ input[type="radio"]:checked + label {
 }
 
 .popup h2 {
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -286,19 +287,31 @@ input[type="radio"]:checked + label {
 
 .zip-btn {
   border-radius: 2px;
-  border: 2px solid #2b2b2b;
-  padding: 20px 40px;
+  border: none;
+  padding: 20px 30px;
   display: flex;
   align-items: flex-start;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .folder-btn {
   border-radius: 2px;
-  border: 2px solid #2b2b2b;
-  padding: 20px 40px;
+  border: none;
+  padding: 20px 20px;
   display: flex;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.zip-btn:hover,.folder-btn:hover{
+  background-color: #2b2b2b;
+  color:rgba(248, 239, 236, 1);
+  transform: translateY(-3px);
 }
 
 .file-upload-container {
@@ -316,10 +329,11 @@ input[type="radio"]:checked + label {
 }
 
 .popup-upload-btn {
+  font-size: 16px;
   padding: 20px 15px;
   margin-right: 10px;
   background-color: #2b2b2b;
-  color: white;
+  color: rgba(248, 239, 236, 1);
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
@@ -329,12 +343,15 @@ input[type="radio"]:checked + label {
 }
 
 .popup-upload {
+  font-size: 16px;
   padding: 20px 30px;
   background-color: #2b2b2b; /* Example green color */
-  color: white;
+  color: rgba(248, 239, 236, 1);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .popup-upload-btn:hover {
@@ -346,7 +363,7 @@ input[type="radio"]:checked + label {
 .popup-upload:hover {
   background-color: #e0e0e0;
   color: #2b2b2b;
-  transform: translateY(-3px);
+  transform: translateY(3px);
 }
 
 #zip-file-name {
@@ -368,6 +385,10 @@ input[type="radio"]:checked + label {
   font-size: 20px;
   line-height: 20px;
   padding: 0px 10px;
+}
+
+.close-button:hover{
+  transform: rotate(-90deg);
 }
 
 .errorMsg {
