@@ -38,7 +38,7 @@
       <div id="preview" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
         <p>Drag an image file here, or click to select a file.</p>
         <input type="file" id="fileInput" onchange="loadFile(event)" style="display: none;" />
-      </div>      
+      </div>
       <span id="file-chosen">No file chosen</span>
     </div>
 
@@ -51,12 +51,15 @@
         <div class="text-img">Upload Dataset</div>
       </div>
       <div class="form-container">
-        <form id="searchForm" hx-post="/upload_image" hx-encoding="multipart/form-data" hx-target="#search-result" ,
-          hx-swap="innerHTML">
-          <input type="file" id="imageInput" name="image" accept=".jpg, .jpeg, .png" style="display: none"
-            onchange="handleFiles(this.files); showFileName(this.files);" />
-          <label for="imageInput" class="custom-file-upload">Insert An Image</label>
-          <input type="submit" id="hiddenSubmitButton" style="display: none" />
+        <input type="file" id="sharedFileInput" name="image" accept=".jpg, .jpeg, .png"
+          onchange="handleFiles(this.files); showFileName(this.files);" style="display: none" />
+        <form id="colorForm" hx-post="/upload_image_color" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML">
+          <label for="sharedFileInput" class="custom-file-upload">Insert An Image</label>
+          <input type="submit" id="colorSubmitButton" style="display: none" />
+        </form>
+        <form id="textureForm" hx-post="/upload_image_texture" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML"
+          style="display: none;">
+          <input type="submit" id="textureSubmitButton" style="display: none" />
         </form>
         <button class="upload-dataset-btn" hx-get="/upload_popup" hx-target="#popup-container"
           hx-swap="innerHTML">Insert Dataset</button>

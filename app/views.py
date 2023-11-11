@@ -34,8 +34,8 @@ def program():
 def serve_dataset_image(filename):
     return send_from_directory('data/img/dataset', filename)
 
-@app.route('/upload_image', methods=['POST'])
-def upload_image() :
+@app.route('/upload_image_color', methods=['POST'])
+def upload_image_color() :
     if 'image' not in request.files:
         return redirect(request.url)
     file = request.files['image']
@@ -204,3 +204,44 @@ def paginate() :
         el["similarity"] = str(float(el["similarity"]) * 100)
 
     return render_template('pagination_template.html', data=paginated_data, current_page=page, total_pages=total_pages)
+
+@app.route('/upload_image_texture', methods=['POST'])
+def upload_image_texture() :
+    if 'image' not in request.files:
+        return redirect(request.url)
+    file = request.files['image']
+    if file.filename == '':
+        return redirect(request.url)
+    if file:
+        start = time.time()
+        filename = secure_filename(file.filename)
+        save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(save_path)
+        vec = texture_cbir.get_vector_from_image(save_path)
+        os.remove(save_path)
+        with open('app/data/dataset_vec.json', 'rb') as f:
+            dataset = orjson.loads(f.read())
+        
+        #HANDLE NO DATA
+        if len(dataset) == 0 :
+            return "<div class='errorMsg'>No Data in Dataset</div>"
+        
+        similar_images = []
+        for data_el in dataset :
+            similarity = texture_cbir.cosine_similarity(vec, np.fromstring(data_el["vec_texture"].strip('[]'), sep=', '))
+            if similarity >= 0.6 :
+                similar_images.append({
+                    "filename" : data_el["filename"],
+                    "similarity" : str(round(similarity, 6)),
+                    "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
+                })
+        similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
+        end = time.time()
+        duration = round(end - start, 2)
+        for el in similar_images :
+            print(el["filename"], el["similarity"])
+        
+        with open('app/data/result.json', 'wb') as f:
+            f.write(orjson.dumps(similar_images))
+        
+        return render_template('result.html', result=len(similar_images), duration=duration)

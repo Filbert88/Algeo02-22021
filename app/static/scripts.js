@@ -90,14 +90,12 @@ function loadFile(event) {
   updateImagePreview(event.target.files[0]);
 }
 
-document.getElementById("preview").addEventListener("click", function () {
-  document.getElementById("fileInput").click();
-});
-
-var preview = document.getElementById('preview');
-preview.addEventListener('dragover', dragOverHandler);
-preview.addEventListener('dragleave', dragLeaveHandler);
-preview.addEventListener('drop', dropHandler);
-preview.addEventListener('click', function() {
-    document.getElementById('fileInput').click(); // Assuming you have an input element with id="fileInput"
+document.addEventListener('DOMContentLoaded', function() {
+  var preview = document.getElementById('preview');
+  preview.addEventListener('dragover', dragOverHandler);
+  preview.addEventListener('dragleave', dragLeaveHandler);
+  preview.addEventListener('drop', dropHandler);
+  preview.addEventListener('click', function() {
+      document.getElementById('sharedFileInput').click();
   });
+});
