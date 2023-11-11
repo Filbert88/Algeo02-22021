@@ -6,3 +6,5 @@ app/data/img/dataset
 app/data/img/user
 __pycache__/
 **/__pycache__/
+
+rust_zip_extractor/target/
