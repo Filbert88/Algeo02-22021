@@ -35,7 +35,7 @@
       </nav>
     </header>
     <div class="guides-wrapper">
-      <div class="guides-container-1">
+      <div class="guides-container-1 fade-in-down">
         <h1>
           What is PixPlore ?
         </h1>
@@ -48,7 +48,7 @@
           </p>
         </section>
       </div>
-      <div class="guides-container">
+      <div class="guides-container fade-in-right">
         <h1>
           How to Use PixPlore ?
         </h1>
@@ -95,7 +95,7 @@
         </section>
       </div>
 
-      <div class="guide-container">
+      <div class="guide-container fade-in-right">
         <a href="{{ url_for('program') }}">
           <button class="learn-more">
             <span class="circle" aria-hidden="true">
@@ -112,5 +112,6 @@
         disable: "mobile",
       });
     </script>
+    <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
   </body>
 </html>

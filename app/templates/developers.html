@@ -31,7 +31,7 @@
         <a href="{{ url_for('program') }}" class="launchApp">Launch App |></a>
       </nav>
     </header>
-    <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" class="dev-wrapper">
+    <div class="dev-wrapper fade-in-down">
       <div class="dev-demo">
         <h1>The Team.</h1>
       </div>
@@ -42,7 +42,7 @@
         </p>
       </div>
     </div>
-    <div data-aos="fade-right" data-aos-delay="400" data-aos-duration="1000" class="dev-content-container">
+    <div class="dev-content-container fade-in-right">
       <div class="dev-image-container">
         <img
           src="{{ url_for('static', filename='img/303997_0.jpg') }}"
@@ -62,7 +62,7 @@
         </p>
       </div>
     </div>
-    <section class="tech-stack">
+    <section class="tech-stack fade-in-left">
       <h1>< Our Tech Stack ></h1>
       <div class="tech-icons">
         <div class="tech-card" title="Css - Cascading Style Sheets for styling HTML web pages.">
@@ -86,7 +86,7 @@
       </div>
     </section>
     
-    <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000" class="dev-developer-wrapper">
+    <div class="dev-developer-wrapper fade-in-up">
         <div  class="dev-text-developers">
             <h1>{ Our Developers }</h1>
         </div>
@@ -154,5 +154,6 @@
         disable: 'mobile'
       });
     </script>
+        <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
   </body>
 </html>

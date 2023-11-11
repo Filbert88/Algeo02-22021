@@ -422,7 +422,6 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 80vh;
-
 }
 
 .guides-container {
@@ -747,3 +746,74 @@ button:hover .button-text {
 
   margin-top: 10px;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in-once {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-right.start-fade-in-right {
+  animation: fadeInRight 1s ease forwards;
+}
+
+.fade-in-left.start-fade-in-left {
+  animation: fadeInLeft 1s ease forwards;
+}
+
+.fade-in-up.start-fade-in-up {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.fade-in-down.start-fade-in-down {
+  animation: fadeInDown 1s ease forwards;
+}
+
+
