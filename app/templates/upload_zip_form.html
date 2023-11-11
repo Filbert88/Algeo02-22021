@@ -1,6 +1,38 @@
 <h2>Upload ZIP</h2>
-<form hx-post="/upload_zip" enctype="multipart/form-data" hx-target="#popup" hx-swap="innerHTML">
-    <input type="file" name="zipfile" accept=".zip">
-    <input type="submit" value="Upload ZIP">
-    <button hx-get="/upload_popup" hx-target="#popup-container" hx-swap="innerHTML" class="close-button">X</button>
-</form>
+<div class="file-upload-container">
+  <form
+    hx-post="/upload_zip"
+    enctype="multipart/form-data"
+    hx-target="#popup"
+    hx-swap="innerHTML"
+  >
+    <div class="input-wrapper">
+      <label for="zipfile" class="popup-upload-btn">Choose ZIP File</label>
+      <input
+        id="zipfile"
+        type="file"
+        name="zipfile"
+        accept=".zip"
+        class="zip-input"
+        style="display: none"
+        onchange="updateFileName()"
+      />
+      <label for="zipUpload" class="popup-upload">Upload Zip</label>
+    </div>
+    <div class="text-popup">
+      <span id="zip-file-name">No file chosen</span>
+    </div>
+    <input
+      id="zipUpload"
+      type="submit"
+      value="Upload ZIP"
+      style="display: none"
+    />
+    <button
+      hx-get="/upload_popup"
+      hx-target="#popup-container"
+      hx-swap="innerHTML"
+      class="close-button"
+    >X</button>
+  </form>
+</div>

@@ -20,7 +20,7 @@
   background-color: #e0e0e0;
   margin-top: 10px;
   font-size: 22px;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .custom-file-upload:hover {
@@ -36,7 +36,7 @@
   background-color: #e0e0e0;
   margin-top: 10px;
   font-size: 22px;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .upload-dataset-btn:hover {
@@ -88,7 +88,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 #preview .obj {
@@ -140,7 +140,7 @@
   align-items: center;
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text-img {
@@ -157,7 +157,7 @@
   background-color: #e0e0e0;
   margin-top: 10px;
   font-size: 22px;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .search-button button:hover {
@@ -182,7 +182,7 @@
   padding: 20px 55px;
   cursor: pointer;
   font-size: 22px;
-  transition: color 0.3s ease;
+  transition: color 0.05s ease;
   flex: 1;
   text-align: center;
   border-radius: 2px;
@@ -200,7 +200,7 @@
   height: 93%;
   background-color: #2f2f2f;
   border-radius: 2px;
-  transition: transform 0.3s ease;
+  transition: transform 0.05s ease;
   z-index: -1;
 }
 
@@ -274,24 +274,88 @@ input[type="radio"]:checked + label {
   position: relative;
 }
 
-.popup h2{
+.popup h2 {
   margin-bottom: 20px;
 }
 
-.zip-btn{
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.zip-btn {
   border-radius: 2px;
   border: 2px solid #2b2b2b;
   padding: 20px 40px;
   display: flex;
   align-items: flex-start;
+  cursor: pointer;
 }
 
-.folder-btn{
+.folder-btn {
   border-radius: 2px;
   border: 2px solid #2b2b2b;
   padding: 20px 40px;
   display: flex;
-  align-items:self-end
+  cursor: pointer;
+}
+
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px; /* Spacing between elements */
+}
+
+.popup-upload-btn {
+  padding: 20px 15px;
+  margin-right: 10px;
+  background-color: #2b2b2b;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.popup-upload {
+  padding: 20px 30px;
+  background-color: #2b2b2b; /* Example green color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-upload-btn:hover {
+  background-color: #e0e0e0;
+  color: #2b2b2b;
+  transform: translateY(-3px);
+}
+
+.popup-upload:hover {
+  background-color: #e0e0e0;
+  color: #2b2b2b;
+  transform: translateY(-3px);
+}
+
+#zip-file-name {
+  margin-top: 10px;
+}
+
+.text-popup {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .close-button {
@@ -301,6 +365,9 @@ input[type="radio"]:checked + label {
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 0px 10px;
 }
 
 .errorMsg {
@@ -312,4 +379,60 @@ input[type="radio"]:checked + label {
   margin-top: 30px;
   font-size: 28px;
   color: #2b2b2b;
+}
+
+.close-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+/* close button styling */
+
+.close-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.leftright {
+  height: 4px;
+  width: 50px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: #f4a259;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all 0.3s ease-in;
+}
+
+.rightleft {
+  height: 4px;
+  width: 50px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: #f4a259;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all 0.3s ease-in;
+}
+
+.close {
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.close-container:hover .leftright {
+  transform: rotate(-45deg);
+  background-color: #f25c66;
+}
+.close-container:hover .rightleft {
+  transform: rotate(45deg);
+  background-color: #f25c66;
+}
+.close-container:hover label {
+  opacity: 1;
 }

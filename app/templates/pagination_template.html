@@ -2,7 +2,7 @@
     {% for item in data %}
     <div class="card">
         <img src="{{ item.image_url }}" alt="Avatar" style="width: 100%" />
-        <p>Similarity: {{ item.similarity }}%</p>
+        <p class="similarity-text">Similarity: {{ item.similarity }}%</p>
         <a href="{{ item.image_url }}" download="myimage" class="download-btn"></a>
     </div>
     {% endfor %}
