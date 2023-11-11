@@ -35,7 +35,10 @@
   <h1 class="title">Reverse Image Search</h1>
   <div class="photo-container">
     <div class="photo-box">
-      <div id="preview"></div>
+      <div id="preview" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <p>Drag an image file here, or click to select a file.</p>
+        <input type="file" id="fileInput" onchange="loadFile(event)" style="display: none;" />
+      </div>      
       <span id="file-chosen">No file chosen</span>
     </div>
 
