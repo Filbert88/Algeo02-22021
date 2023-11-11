@@ -35,91 +35,67 @@
       </nav>
     </header>
     <div class="guides-wrapper">
-      <!-- <div class="guides-container">
-        <h1 data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+      <div class="guides-container-1">
+        <h1>
           What is PixPlore ?
         </h1>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="400"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
+        <section class="guide-section-1">
           <p>
-            Pixplore is bla bla bla bla ... Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Ex esse earum pariatur reprehenderit,
-            ab, voluptatum iusto provident ut mollitia error porro itaque
-            exercitationem nostrum tempore debitis dicta commodi aut
-            dignissimos.
+            Pixplore is a web service or application that provides Content-Based
+            Image Retrieval (CBIR) functionality. CBIR is a process used to
+            search for and retrieve images based on their visual content, rather
+            than relying on textual keywords or descriptions.
           </p>
         </section>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="500"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Uploading Images</h2>
-          <p>Detailed steps on how to upload and manage images...</p>
-        </section>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="600"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Searching and Exploring</h2>
-          <p>Tips on how to effectively search and explore images...</p>
-        </section>
-      </div> -->
+      </div>
       <div class="guides-container">
-        <h1 data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
-          How to Use PixPlore
+        <h1>
+          How to Use PixPlore ?
         </h1>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="400"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Getting Started</h2>
-          <p>Instructions on how to get started with PixPlore...</p>
+        <section class="guide-section">
+          <h2>1. Uploading Your Image Dataset</h2>
+          <p>
+            Users should first upload a dataset of images in the form of a
+            folder containing a collection of images. This image dataset is
+            required before the searching process to have a basis for comparison
+            with the image you want to search for.
+          </p>
         </section>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="500"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Uploading Images</h2>
-          <p>Detailed steps on how to upload and manage images...</p>
+        <section class="guide-section">
+          <h2>2. Inputting the Search Image</h2>
+          <p>
+            Once the dataset is uploaded, users can input an image they want to
+            search for from the dataset.
+          </p>
         </section>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="600"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Searching and Exploring</h2>
-          <p>Tips on how to effectively search and explore images...</p>
+        <section class="guide-section">
+          <h2>3. Choosing Search Options</h2>
+          <p>
+            Choose a search option, whether you want to search based on color or
+            texture.
+          </p>
         </section>
-        <section
-          data-aos="fade-right"
-          data-aos-delay="700"
-          data-aos-duration="1000"
-          class="guide-section"
-        >
-          <h2>Additional Features</h2>
-          <p>Information about additional features and how to use them...</p>
+        <section class="guide-section">
+          <h2>4. Start Searching</h2>
+          <p>
+            Press the search button, and the program will then process,
+            searching for images within the dataset that have similarities to
+            the uploaded image.
+          </p>
+        </section>
+        <section class="guide-section">
+          <h2>5. Viewing Results</h2>
+          <p>
+            The program will display a collection of similar images, sorted from
+            the highest to the lowest similarity. Each image that appears will
+            be accompanied by a percentage indicating its similarity.
+            Information about the number of images displayed and the program's
+            execution time will also be provided.
+          </p>
         </section>
       </div>
 
-      <div
-        data-aos="fade-right"
-        data-aos-delay="800"
-        data-aos-duration="1000"
-        class="guide-container"
-      >
+      <div class="guide-container">
         <a href="{{ url_for('program') }}">
           <button class="learn-more">
             <span class="circle" aria-hidden="true">
