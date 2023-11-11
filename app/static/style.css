@@ -209,7 +209,7 @@ body {
 .card {
   transition: 0.3s;
   width: calc(25% - 20px);
-  height: 420px;
+  height: 370px;
   border-radius: 2px;
   margin-bottom: 20px;
   text-align: center;

@@ -14,7 +14,7 @@
 
 .custom-file-upload {
   display: inline-block;
-  padding: 30px 80px;
+  padding: 30px 60px;
   cursor: pointer;
   border-radius: 2px;
   background-color: #e0e0e0;
@@ -30,7 +30,7 @@
 
 .upload-dataset-btn {
   display: block;
-  padding: 30px 80px;
+  padding: 30px 60px;
   cursor: pointer;
   border-radius: 2px;
   background-color: #e0e0e0;
@@ -55,6 +55,7 @@
   align-items: flex-start;
   padding-left: 100px;
   padding-right: 100px;
+  gap: 50px;
 }
 
 .photo-box {
