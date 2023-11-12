@@ -37,8 +37,7 @@
       </div>
       <div class="dev-container">
         <p>
-          We want to see the world more fair and transparent. We are building
-          the missing puzzles in order to see our vision come true.
+          Our passion lies in harnessing the power of CBIR to create more intuitive, efficient, and engaging user experiences. Join us on our journey as we redefine the way we search, discover, and connect with visual information.  
         </p>
       </div>
     </div>
@@ -53,35 +52,24 @@
       <div class="dev-text-container">
         <h2>Meet us!</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi iste
-          veniam porro, incidunt placeat labore reprehenderit earum alias eos
-          consequatur debitis sed fugit iure velit ad, amet quis exercitationem
-          perferendis aliquid rerum magni omnis! Labore illum soluta ea
-          aspernatur ducimus odio dolore dignissimos dolores nihil. Modi, animi
-          voluptatibus! Nulla, optio.
+          We are a close-knit group of three individuals, each bringing our unique strengths and perspectives to the table. Our journey began in Labtek V, a hub of innovation and technology within the prestigious Institute of Technology Bandung (ITB). Our shared passion for technology and commitment to excellence have been the driving forces behind our collaboration. As a team, we pride ourselves on our diverse skills, collaborative spirit, and dedication to making a meaningful impact through our work.
         </p>
       </div>
     </div>
     <section class="tech-stack fade-in-left">
       <h1>< Our Tech Stack ></h1>
       <div class="tech-icons">
-        <div class="tech-card" title="Css - Cascading Style Sheets for styling HTML web pages.">
-          <a href="https://devdocs.io/css/" target="_blank">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="css"/>   
-          </a>
-          <p>CSS</p>
-        </div>
         <div class="tech-card" title="Flask - Micro web framework for building web applications in Python.">
           <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">
             <img src="{{ url_for('static', filename='img/flask.svg')}}" alt="Flask" />
           </a>
           <p>Flask</p>
         </div>
-        <div class="tech-card" title="Htmx - A modern library for Ajax, CSS Transitions, WebSockets, and more.">
+        <div class="tech-card-htmx" title="Htmx - A modern library for Ajax, CSS Transitions, WebSockets, and more.">
           <a href="https://htmx.org/" target="_blank"> 
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html"/> 
+            <img src="{{ url_for('static', filename='img/HTMX_logo.png')}}" alt="htmx"/> 
           </a>
-          <p>HTML & HTMX</p>
+          <p>HTMX</p>
         </div>
       </div>
     </section>
@@ -93,7 +81,8 @@
         <div class="carddev-container">
             <div class="carddev">
                 <img
-                    src="{{ url_for('static', filename='img/938548.jpg') }}"
+                    class="dev-photo"
+                    src="{{ url_for('static', filename='img/filbert.jpg') }}"
                     alt="Developer"
                     class="developer"
                     style="width: 100%"
@@ -111,7 +100,8 @@
             </div>
             <div class="carddev">
                 <img
-                    src="{{ url_for('static', filename='img/309960_0.jpg') }}"
+                    class="dev-photo"
+                    src="{{ url_for('static', filename='img/juan.jpg') }}"
                     alt="Developer"
                     class="developer"
                     style="width: 100%"
@@ -129,7 +119,8 @@
             </div>
             <div class="carddev">
                 <img
-                    src="{{ url_for('static', filename='img/309960_0.jpg') }}"
+                    class="dev-photo"
+                    src="{{ url_for('static', filename='img/azmi.jpg') }}"
                     alt="Developer"
                     class="developer"
                     style="width: 100%"

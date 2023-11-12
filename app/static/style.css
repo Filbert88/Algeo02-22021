@@ -203,25 +203,32 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 20px 90px 20px 90px;
+  padding: 20px 100px 20px 100px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: calc(25% - (3 * 20px / 4));
+  background-color: #e0e0e0;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+
+}
+
+.similarity{
+  text-align: center;
+  width: 100%;
+  padding: 5px 0;
 }
 
 .card {
   transition: 0.3s;
-  width: calc(25% - 20px);
-  height: auto;
-  max-width: 500px;
-  border-radius: 2px;
-  margin-bottom: 20px;
-  text-align: center;
-  overflow: hidden;
-  font-size: 15px;
+  width: 100%;
+  height: 400px;
   position: relative;
-  transition: transform 0.3s ease;
-  background-color: #e0e0e0;
   overflow: hidden;
-  border: 2px solid #2b2b2b;
-  align-items: center;
 }
 
 .card img {
@@ -237,7 +244,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url("img/download.png");
+  background-image: url("img/download1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -246,28 +253,28 @@ body {
   transition: 0.3s;
 }
 
-.card:hover {
+.card-wrapper:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   filter: drop-shadow(1px);
   transform: scale(0.95);
 }
 
-.card:hover .download-btn {
+.card-wrapper:hover .download-btn {
   display: block;
   filter: none;
 }
 
-.card:hover img,
-.card:hover p {
+.card-wrapper:hover img,
+.card-wrapper:hover p {
   opacity: 0.8;
 }
 
-.card img {
+/* .card img {
   width: 100%;
   height: auto;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-}
+} */
 
 .card-container .card-container {
   padding: 2px 16px;
@@ -279,6 +286,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 25vh;
+}
+
+.dev-wrapper h1{
+  font-size: 30px;
 }
 
 .dev-demo {
@@ -338,7 +349,7 @@ body {
   color: #2b2b2b;
 }
 .dev-text-container h2 {
-  font-size: 40px;
+  font-size: 30px;
   color: #2b2b2b;
   margin-bottom: 15px;
 }
@@ -368,12 +379,19 @@ body {
   gap: 40px;
   /* padding: 0 100px; */
 }
+.carddev .dev-photo{
+  height: 350px;
+  width: 350px;
+  object-fit: cover;
+}
+
 
 .carddev {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 300px;
   height: auto;
+  max-height:fit-content;
   border-radius: 2px;
   text-align: center;
   font-size: 18px;
@@ -728,7 +746,7 @@ button:hover .button-text {
   transition: transform 0.3s ease;
   padding: 20px;
   color: whitesmoke;
-  position: relative; /* For pseudo-element positioning */
+  position: relative;
 }
 
 .tech-card:hover img {
@@ -737,15 +755,44 @@ button:hover .button-text {
 }
 
 .tech-card img {
-  width: 200px; /* Adjust size as needed */
+  width: 200px;
   height: auto;
   transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.tech-card-htmx{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  padding: 20px;
+  color: whitesmoke;
+  position: relative;
+}
+
+.tech-card-htmx img{
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.tech-card-htmx p{
+  font-size: 16px;
+  color: #2b2b2b;
+  margin-top: 10px;
+}
+
+.tech-card-htmx:hover img {
+  transform: translateY(-5px) scale(1.05);
+  filter: brightness(1.2);
 }
 
 .tech-card p {
   font-size: 16px;
   color: #2b2b2b;
-
   margin-top: 10px;
 }
 

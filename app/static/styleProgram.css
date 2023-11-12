@@ -1,9 +1,8 @@
 .title {
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
   font-size: 40px;
-  font-style: italic;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .text-container {
@@ -76,7 +75,7 @@
   margin-bottom: 10px;
   text-align: center;
   width: 700px;
-  height: 425px;
+  height: 438px;
   background-color: #2b2b2b;
   overflow: hidden;
   transition: border 0.3s ease, background-color 0.3s ease;
@@ -129,23 +128,48 @@
   background-color: #2b2b2b;
 }
 
-.text-how {
-  width: full;
-  background-color: #e0e0e0;
-  height: 80px;
-  text-align: center;
-  font-size: 25px;
+.how-container{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.scrape-button{
+  display: block;
+  border: none;
+  padding: 30px 94px;
   cursor: pointer;
+  border-radius: 2px;
+  background-color: #e0e0e0;
+  font-size: 22px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.scrape-button:hover{
+  color: rgba(248, 239, 236, 1);
+  background-color: #2b2b2b;
+}
+
+.text-how {
+  display: inline-block;
+  padding: 30px 80px;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #e0e0e0;
+  font-size: 22px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text-img {
   font-size: 20px;
   margin-top: 40px;
+}
+
+.pdf-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .search-button button {
