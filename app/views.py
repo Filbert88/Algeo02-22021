@@ -9,6 +9,7 @@ import zipfile
 import orjson
 import threading
 import time
+from app import create_pdf
 
 @app.route('/')
 def index():
@@ -44,10 +45,12 @@ def upload_image_color() :
     if file:
         start = time.time()
         filename = secure_filename(file.filename)
-        save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        upload_dir = app.config['UPLOAD_FOLDER']
+        save_path = os.path.join(upload_dir, filename)
+        shutil.rmtree(upload_dir)
+        os.makedirs(upload_dir)
         file.save(save_path)
         vec = color_cbir.get_vec_from_hsv_load(save_path)
-        os.remove(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
         
@@ -61,6 +64,8 @@ def upload_image_color() :
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
+                    "type" : "COLOR",
+                    "file_path" : data_el["file_path"],
                     "similarity" : str(similarity),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
@@ -117,6 +122,7 @@ def process_file_chunk(file_chunk, result_list):
         texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
         temp_data.append({
             "filename": filename.split('/')[-1],
+            "file_path": filename,
             "vec_color": str(vec_color),
             "vec_texture": str(texture)
         })
@@ -226,10 +232,12 @@ def upload_image_texture() :
     if file:
         start = time.time()
         filename = secure_filename(file.filename)
-        save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        upload_dir = app.config['UPLOAD_FOLDER']
+        save_path = os.path.join(upload_dir, filename)
+        shutil.rmtree(upload_dir)
+        os.makedirs(upload_dir)
         file.save(save_path)
         vec = texture_cbir.get_vector_from_location(save_path)
-        os.remove(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
         
@@ -243,8 +251,10 @@ def upload_image_texture() :
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
+                    "type" : "TEXTURE",
+                    "file_path" : data_el["file_path"],
                     "similarity" : str(similarity),
-                    "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
+                    "image_url" : url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
         end = time.time()
@@ -261,6 +271,7 @@ def show_loading():
 
 @app.route('/show_download_button', methods=['GET'])
 def show_download_button():
+    create_pdf.create_report()
     return render_template('download_report.html')
 
 @app.route('/delete_download_button', methods=['GET'])

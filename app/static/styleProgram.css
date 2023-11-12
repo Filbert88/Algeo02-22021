@@ -517,7 +517,7 @@ input[type="radio"]:checked + label {
 
 @keyframes pulse-hjvm54 {
   to {
-     transform: scale(1.8);
+     transform: scale(1.4);
      opacity: 0;
   }
 }
@@ -525,4 +525,22 @@ input[type="radio"]:checked + label {
 .loading-text {
   font-size: 30px;
   margin-top: 10px;
+}
+
+.download-pdf {
+  text-decoration: none;
+  display: block;
+  padding: 30px 60px;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #e0e0e0;
+  color: #2b2b2b;
+  margin-top: 0px;
+  font-size: 22px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.download-pdf:hover {
+  color: rgba(248, 239, 236, 1);
+  background-color: #2b2b2b;
 }
