@@ -48,7 +48,8 @@
         <a href="{{ url_for('guides') }}" class="how-link">
           <div class="text-how">How To Use ?</div>
         </a>
-        <button class="scrape-button">Webscrape</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        <button class="scrape-button" hx-get="/webscrape_popup" hx-target="#popup-container"
+        hx-swap="innerHTML">Webscrape</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
       </div>
       
       <div class="text-container">

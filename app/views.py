@@ -277,3 +277,7 @@ def show_download_button():
 @app.route('/delete_download_button', methods=['GET'])
 def delete_download_button():
     return ""
+
+@app.route('/webscrape_popup', methods=['GET'])
+def webscrape_popup():
+    return render_template('scrape_popup.html')

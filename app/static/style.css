@@ -47,7 +47,7 @@ body {
   background-color: rgba(248, 239, 236, 0.8);
   backdrop-filter: blur(15px); /* Blurring effect */
   -webkit-backdrop-filter: blur(15px);
-  transition: all 0.5s ease-in-out; /* Smooth transition for all changes */
+  transition: all 0.3s ease-in-out; /* Smooth transition for all changes */
 }
 
 .header .logo,
@@ -103,9 +103,11 @@ body {
   font-weight: 500;
   text-decoration: none;
   margin-left: 40px;
-  background: linear-gradient(0deg, #2b2b2b, #2b2b2b) no-repeat left / 0
+  background: linear-gradient(0deg, rgb(255, 232, 190), rgb(255, 232, 190)) no-repeat left / 0
     var(--bg-h);
   --bg-h: 100%;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
 }
 
 .navbar .launchApp {
@@ -118,7 +120,7 @@ body {
 .navbar .launchApp:where(:hover, :focus-visible) {
   background-size: 100% var(--bg-h);
   background-position-x: left;
-  color: #f9f1ee;
+  color: #2b2b2b;
 }
 
 .navbar .textnav {
@@ -319,6 +321,8 @@ body {
   margin: 20px;
   margin-left: 20vw;
   margin-right: 20vw;
+  box-shadow: 10px 10px #2b2b2b;
+  border: 2px solid #2b2b2b;
 }
 
 .dev-image-container {
@@ -528,7 +532,7 @@ button.learn-more .circle {
   margin: 0;
   width: 4rem;
   height: 4rem;
-  background: #282936;
+  background: #2b2b2b;
   border-radius: 2px;
 }
 
@@ -538,7 +542,7 @@ button.learn-more .circle .icon {
   top: 0;
   bottom: 0;
   margin: auto;
-  background: #fff;
+  background:rgba(248, 239, 236, 1);
 }
 
 button.learn-more .circle .icon.arrow {
@@ -556,8 +560,8 @@ button.learn-more .circle .icon.arrow::before {
   right: 0.075rem;
   width: 0.75rem;
   height: 0.75rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
+  border-top: 0.125rem solid rgba(248, 239, 236, 1);
+  border-right: 0.125rem solid rgba(248, 239, 236, 1);
   transform: rotate(45deg);
 }
 
@@ -583,12 +587,12 @@ button:hover .circle {
 }
 
 button:hover .circle .icon.arrow {
-  background: #fff;
+  background: rgba(248, 239, 236, 1);
   transform: translate(1.25rem, 0);
 }
 
 button:hover .button-text {
-  color: #fff;
+  color: rgba(248, 239, 236, 1);
 }
 
 .photos-right,

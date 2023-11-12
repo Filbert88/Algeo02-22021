@@ -17,14 +17,15 @@
   cursor: pointer;
   border-radius: 2px;
   background-color: #e0e0e0;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   margin-top: 10px;
   font-size: 22px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .custom-file-upload:hover {
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
+  background-color: rgb(255, 232, 190);
 }
 
 .upload-dataset-btn {
@@ -35,17 +36,13 @@
   background-color: #e0e0e0;
   margin-top: 10px;
   font-size: 22px;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .upload-dataset-btn:hover {
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
-}
-
-.upload-dataset-btn,
-.search-button button {
-  border: none;
+  background-color: rgb(255, 232, 190);
 }
 
 .photo-container {
@@ -119,13 +116,14 @@
 }
 
 .how-link {
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   text-decoration: none;
   color: inherit;
 }
 
 .how-link:hover .text-how {
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
+  background-color: rgb(255, 232, 190);
 }
 
 .how-container{
@@ -141,13 +139,14 @@
   cursor: pointer;
   border-radius: 2px;
   background-color: #e0e0e0;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   font-size: 22px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .scrape-button:hover{
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
+  background-color: rgb(255, 232, 190);
 }
 
 .text-how {
@@ -181,12 +180,13 @@
   background-color: #e0e0e0;
   margin-top: 10px;
   font-size: 22px;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .search-button button:hover {
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
+  background-color: rgb(255, 232, 190)
 }
 
 .toggle-container {
@@ -194,6 +194,8 @@
   justify-content: flex-start;
   align-items: center;
   background-color: #e0e0e0;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   border-radius: 2px;
   padding: 5px;
   margin-top: 10px;
@@ -317,8 +319,9 @@ input[type="radio"]:checked + label {
   align-items: flex-start;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   background: #e0e0e0;
 }
 
@@ -329,14 +332,14 @@ input[type="radio"]:checked + label {
   display: flex;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   background: #e0e0e0;
 }
 
 .zip-btn:hover,.folder-btn:hover{
-  background-color: #2b2b2b;
-  color:rgba(248, 239, 236, 1);
+  background-color: rgb(255, 232, 190);
   transform: translateY(-3px);
 }
 
@@ -358,37 +361,34 @@ input[type="radio"]:checked + label {
   font-size: 16px;
   padding: 20px 15px;
   margin-right: 10px;
-  background-color: #2b2b2b;
-  color: rgba(248, 239, 236, 1);
-  border-radius: 4px;
+  background-color: rgba(248, 239, 236, 1);
+  color: #2b2b2b;
+  border-radius: 2px;
   cursor: pointer;
   display: inline-block;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
   text-decoration: none;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
 }
 
 .popup-upload {
   font-size: 16px;
   padding: 20px 30px;
-  background-color: #2b2b2b; /* Example green color */
-  color: rgba(248, 239, 236, 1);
+  background-color: rgba(248, 239, 236, 1); /* Example green color */
+  color: #2b2b2b;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
 }
 
-.popup-upload-btn:hover {
-  background-color: #e0e0e0;
-  color: #2b2b2b;
-  transform: translateY(-3px);
-}
-
-.popup-upload:hover {
-  background-color: #e0e0e0;
-  color: #2b2b2b;
+.popup-upload-btn:hover, .popup-upload:hover {
+  background-color: rgb(255, 232, 190);
   transform: translateY(-3px);
 }
 
@@ -403,7 +403,7 @@ input[type="radio"]:checked + label {
 
 .close-button {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 10px;
   background: none;
   border: none;
@@ -446,14 +446,15 @@ input[type="radio"]:checked + label {
   border-radius: 2px;
   background-color: #e0e0e0;
   color: #2b2b2b;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   margin-top: 0px;
   font-size: 22px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .download-pdf:hover {
-  color: rgba(248, 239, 236, 1);
-  background-color: #2b2b2b;
+  background-color: rgb(255, 232, 190);
 }
 
 .form-input {
@@ -471,15 +472,18 @@ input[type="radio"]:checked + label {
 }
 .form-input button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
   border: none;
-  background: #2b2b2b;
-  color: #f8efec;
+  background: #e0e0e0;
+  color: #2b2b2b;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
   border-radius: 2px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .form-input button:hover {
-  background: #e0e0e0;
+  background: rgb(255, 232, 190);
   color: #2b2b2b;
 }
 
@@ -512,4 +516,42 @@ input[type="radio"]:checked + label {
 .popup h2 {
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pulse {
+  width: 121px;
+  height: 67.2px;
+  color: #2b2b2b;
+  --c: radial-gradient(farthest-side,currentColor 96%,#0000);
+  background: var(--c) 100% 100% /30% 60%,
+         var(--c) 70%  0    /50% 100%,
+         var(--c) 0    100% /36% 68%,
+         var(--c) 27%  18%  /26% 40%,
+         linear-gradient(currentColor 0 0) bottom/67% 58%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.pulse:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  animation: pulse-hjvm54 1s infinite;
+}
+
+@keyframes pulse-hjvm54 {
+  to {
+     transform: scale(1.4);
+     opacity: 0;
+  }
 }
