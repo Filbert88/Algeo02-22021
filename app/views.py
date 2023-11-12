@@ -50,35 +50,34 @@ def upload_image_color() :
         os.remove(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
-        for el in dataset :
-            print(el["filename"])
+        
         #HANDLE NO DATA
         if len(dataset) == 0 :
             return "<div class='errorMsg'>No Data in Dataset</div>"
         
         similar_images = []
         for data_el in dataset :
-            print(data_el["filename"])
             similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : str(round_decimal(similarity, 4)),
+                    "similarity" : str(similarity),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
         end = time.time()
         duration = round(end - start, 2)
-        for el in similar_images :
-            print(el["filename"], el["similarity"])
         
         with open('app/data/result.json', 'wb') as f:
             f.write(orjson.dumps(similar_images))
-        
+
+        if len(similar_images) == 0 :
+            return render_template('noresult.html', result=0, duration=duration)
         return render_template('result.html', result=len(similar_images), duration=duration)
 
 @app.route('/upload_zip', methods=['POST'])
 def upload_zip() :
+    time.sleep(0.5)
     if 'zipfile' not in request.files:
             print("NO FILE PART")
             return render_template('dataset_error.html')
@@ -109,7 +108,6 @@ def extract_images_from_zip(file, dir_path):
             if file_info.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
                 with zip_ref.open(file_info) as source, open(os.path.join(dataset_folder, os.path.basename(file_info.filename)), 'wb') as target:
                     shutil.copyfileobj(source, target)
-
 
 def process_file_chunk(file_chunk, result_list):
     temp_data = []
@@ -165,6 +163,7 @@ def upload_folder_form():
 
 @app.route('/upload_folder', methods=['POST'])
 def upload_folder():
+    time.sleep(0.5)
     app.config['MAX_CONTENT_LENGTH'] = None
     uploaded_files = request.files.getlist('files[]')
     dataset_folder = 'app/data/img/dataset/'
@@ -207,8 +206,13 @@ def paginate() :
         total_pages = len(data)//items_per_page
     
     paginated_data = data[start_index:end_index]
+
     for el in paginated_data :
-        el["similarity"] = str(float(el["similarity"]) * 100)
+        similarity_value = round(float(el["similarity"]), 5)
+        if similarity_value % 1 > 0:
+            el["similarity"] = "{:.3f}%".format(similarity_value * 100)
+        else:
+            el["similarity"] = "{:.0f}%".format(similarity_value * 100)
 
     return render_template('pagination_template.html', data=paginated_data, current_page=page, total_pages=total_pages)
 
@@ -239,20 +243,26 @@ def upload_image_texture() :
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : str(round_decimal(similarity, 6)),
+                    "similarity" : str(similarity),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
         end = time.time()
         duration = round(end - start, 2)
-        for el in similar_images :
-            print(el["filename"], el["similarity"])
         
         with open('app/data/result.json', 'wb') as f:
             f.write(orjson.dumps(similar_images))
         
         return render_template('result.html', result=len(similar_images), duration=duration)
-    
 
-def round_decimal(x, decimal) :
-    return round(x * (10**decimal)) / (10**decimal)
+@app.route('/show_loading', methods=['GET'])
+def show_loading():
+    return render_template('loading.html')
+
+@app.route('/show_download_button', methods=['GET'])
+def show_download_button():
+    return render_template('download_report.html')
+
+@app.route('/delete_download_button', methods=['GET'])
+def delete_download_button():
+    return ""

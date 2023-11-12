@@ -483,3 +483,46 @@ input[type="radio"]:checked + label {
 .close-container:hover label {
   opacity: 1;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pulse {
+  width: 121px;
+  height: 67.2px;
+  color: #2b2b2b;
+  --c: radial-gradient(farthest-side,currentColor 96%,#0000);
+  background: var(--c) 100% 100% /30% 60%,
+         var(--c) 70%  0    /50% 100%,
+         var(--c) 0    100% /36% 68%,
+         var(--c) 27%  18%  /26% 40%,
+         linear-gradient(currentColor 0 0) bottom/67% 58%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.pulse:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  animation: pulse-hjvm54 1s infinite;
+}
+
+@keyframes pulse-hjvm54 {
+  to {
+     transform: scale(1.8);
+     opacity: 0;
+  }
+}
+
+.loading-text {
+  font-size: 30px;
+  margin-top: 10px;
+}

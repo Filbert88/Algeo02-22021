@@ -17,7 +17,6 @@ def get_vector(image: np.ndarray) -> np.ndarray:
     return color_vector
 
 def rgb_to_hsv_vectorized(bgr_image):
-
     rgb_image = bgr_image[..., ::-1]
 
     rgb_image = rgb_image.astype('float32') / 255.0
@@ -52,19 +51,13 @@ def rgb_to_hsv_vectorized(bgr_image):
     return hsv_image.astype('uint8')
 
 def load_image_as_hsv(image_location: str) -> np.ndarray:
-    
     bgr_image = cv2.imread(image_location)
 
     if bgr_image is None:
         raise FileNotFoundError(f"No image found at {image_location}")
 
     hsv_image = rgb_to_hsv_vectorized(bgr_image)
-
     return hsv_image
-
-# def load_image_as_hsv(image_location: str) -> np.ndarray:
-#     result = cv2.cvtColor(cv2.imread(image_location), cv2.COLOR_BGR2HSV)
-#     return result
 
 def get_vec_from_hsv_load(image_location: str) -> np.ndarray:
     return get_vector(load_image_as_hsv(image_location))

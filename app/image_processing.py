@@ -2,16 +2,13 @@ import numpy as np
 import cv2
 
 def load_image_as_grayscale(image_location: str) -> np.ndarray:
-    
     bgr_image = cv2.imread(image_location)
 
     if bgr_image is None:
         raise FileNotFoundError(f"No image found at {image_location}")
 
     weights = np.array([0.114, 0.587, 0.299])
-
     grayscale_image = np.dot(bgr_image, weights)
-
     return grayscale_image.astype('uint8')
 
 def resize_from_location(image_location: str, width, height) -> np.ndarray:
