@@ -2,7 +2,7 @@ from app import app
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, request, render_template, redirect, url_for, send_from_directory
-from app import color_cbir, texture_cbir
+from app import texture_cbir, color_cbir, image_processing
 import numpy as np
 import shutil
 import zipfile
@@ -50,18 +50,20 @@ def upload_image_color() :
         os.remove(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
-        
+        for el in dataset :
+            print(el["filename"])
         #HANDLE NO DATA
         if len(dataset) == 0 :
             return "<div class='errorMsg'>No Data in Dataset</div>"
         
         similar_images = []
         for data_el in dataset :
-            similarity = color_cbir.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
+            print(data_el["filename"])
+            similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : str(round(similarity, 4)),
+                    "similarity" : str(round_decimal(similarity, 4)),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
@@ -113,7 +115,7 @@ def process_file_chunk(file_chunk, result_list):
     temp_data = []
     for filename in file_chunk:
         vec_color = color_cbir.get_vec_from_hsv_load(filename)
-        vec_texture = texture_cbir.get_vector_from_image(filename)
+        vec_texture = texture_cbir.get_vector_from_location(filename)
         texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
         temp_data.append({
             "filename": filename.split('/')[-1],
@@ -195,6 +197,8 @@ def paginate() :
     items_per_page = 4
     with open('app/data/result.json', 'rb') as f:
             data = orjson.loads(f.read())
+    if len(data) == 0 :
+        return ""
     start_index = (page - 1) * items_per_page
     end_index = start_index + items_per_page
     if (len(data) / items_per_page) > (len(data) // items_per_page) :
@@ -220,7 +224,7 @@ def upload_image_texture() :
         filename = secure_filename(file.filename)
         save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(save_path)
-        vec = texture_cbir.get_vector_from_image(save_path)
+        vec = texture_cbir.get_vector_from_location(save_path)
         os.remove(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
@@ -231,11 +235,11 @@ def upload_image_texture() :
         
         similar_images = []
         for data_el in dataset :
-            similarity = texture_cbir.cosine_similarity(vec, np.fromstring(data_el["vec_texture"].strip('[]'), sep=', '))
+            similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_texture"].strip('[]'), sep=', '))
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
-                    "similarity" : str(round(similarity, 6)),
+                    "similarity" : str(round_decimal(similarity, 6)),
                     "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
                 })
         similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
@@ -248,3 +252,7 @@ def upload_image_texture() :
             f.write(orjson.dumps(similar_images))
         
         return render_template('result.html', result=len(similar_images), duration=duration)
+    
+
+def round_decimal(x, decimal) :
+    return round(x * (10**decimal)) / (10**decimal)

@@ -16,8 +16,55 @@ def get_vector(image: np.ndarray) -> np.ndarray:
     
     return color_vector
 
+def rgb_to_hsv_vectorized(bgr_image):
+
+    rgb_image = bgr_image[..., ::-1]
+
+    rgb_image = rgb_image.astype('float32') / 255.0
+
+    c_max = np.max(rgb_image, axis=-1)
+    c_min = np.min(rgb_image, axis=-1)
+    delta = c_max - c_min
+
+    hsv_image = np.zeros_like(rgb_image)
+
+    mask = delta > 0
+    idx = (rgb_image[..., 0] == c_max) & mask
+    hsv_image[..., 0][idx] = (60 * (rgb_image[..., 1][idx] - rgb_image[..., 2][idx]) / delta[idx] + 360) % 360
+    idx = (rgb_image[..., 1] == c_max) & mask
+    hsv_image[..., 0][idx] = (60 * (rgb_image[..., 2][idx] - rgb_image[..., 0][idx]) / delta[idx] + 120) % 360
+    idx = (rgb_image[..., 2] == c_max) & mask
+    hsv_image[..., 0][idx] = (60 * (rgb_image[..., 0][idx] - rgb_image[..., 1][idx]) / delta[idx] + 240) % 360
+
+    delta = np.nan_to_num(delta)
+    c_max = np.nan_to_num(c_max)
+
+    threshold = 1e-10
+
+    hsv_image[..., 1] = np.where(c_max > threshold, delta / np.maximum(c_max, threshold), 0)
+
+    hsv_image[..., 2] = c_max
+
+    hsv_image[..., 0] /= 2
+    hsv_image[..., 1] *= 255.0
+    hsv_image[..., 2] *= 255.0
+
+    return hsv_image.astype('uint8')
+
 def load_image_as_hsv(image_location: str) -> np.ndarray:
-    return cv2.cvtColor(cv2.imread(image_location), cv2.COLOR_BGR2HSV)
+    
+    bgr_image = cv2.imread(image_location)
+
+    if bgr_image is None:
+        raise FileNotFoundError(f"No image found at {image_location}")
+
+    hsv_image = rgb_to_hsv_vectorized(bgr_image)
+
+    return hsv_image
+
+# def load_image_as_hsv(image_location: str) -> np.ndarray:
+#     result = cv2.cvtColor(cv2.imread(image_location), cv2.COLOR_BGR2HSV)
+#     return result
 
 def get_vec_from_hsv_load(image_location: str) -> np.ndarray:
     return get_vector(load_image_as_hsv(image_location))
