@@ -45,9 +45,13 @@
     </div>
 
     <div class="right-panel">
-      <a href="{{ url_for('guides') }}" class="how-link">
-        <div class="text-how">How To Use ?</div>
-      </a>
+      <div class="how-container">
+        <a href="{{ url_for('guides') }}" class="how-link">
+          <div class="text-how">How To Use ?</div>
+        </a>
+        <button class="scrape-button">Webscrape</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+      </div>
+      
       <div class="text-container">
         <div class="text-img">Upload Image</div>
         <div class="text-img">Upload Dataset</div>
@@ -88,6 +92,10 @@
   <div id="search-result"></div>
   <div id="pagination-target"></div>
   <div id="popup-container"></div>
+
+  <div class="pdf-container">
+    <button class="upload-dataset-btn">Download Report</button>
+  </div>
 </body>
 
 </html>
