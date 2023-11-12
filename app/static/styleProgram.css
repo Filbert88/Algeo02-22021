@@ -264,7 +264,7 @@ input[type="radio"]:checked + label {
 }
 
 .popup {
-  background-color: #fff;
+  background-color: rgba(248, 239, 236, 1);
   padding: 20px;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -295,6 +295,7 @@ input[type="radio"]:checked + label {
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
+  background: #e0e0e0;
 }
 
 .folder-btn {
@@ -306,6 +307,7 @@ input[type="radio"]:checked + label {
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
+  background: #e0e0e0;
 }
 
 .zip-btn:hover,.folder-btn:hover{
@@ -363,7 +365,7 @@ input[type="radio"]:checked + label {
 .popup-upload:hover {
   background-color: #e0e0e0;
   color: #2b2b2b;
-  transform: translateY(3px);
+  transform: translateY(-3px);
 }
 
 #zip-file-name {

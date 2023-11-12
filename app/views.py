@@ -79,10 +79,10 @@ def upload_image_color() :
 def upload_zip() :
     if 'zipfile' not in request.files:
             print("NO FILE PART")
-            return "NO FILE PART"
+            return render_template('dataset_error.html')
     file = request.files['zipfile']
     if file.filename == '':
-        return 'NO SELECTED FILE'
+        return render_template('dataset_error.html')
     if file and file.filename.endswith('.zip'):
         dataset_dir = app.config['DATASET_FOLDER']
         start_time = time.time()
@@ -169,6 +169,9 @@ def upload_folder():
     if os.path.exists(dataset_folder) and os.path.isdir(dataset_folder):
         shutil.rmtree(dataset_folder)
     os.makedirs(dataset_folder)
+
+    if len(uploaded_files) == 0 :
+        return render_template('dataset_error.html')
 
     for file in uploaded_files:
         if file.filename != '':

@@ -45,7 +45,7 @@ def compare_from_location(input_image_location: str, dataset_image_location: str
     input_submatrices = split(input_image, BLOCK_DIMENSION, BLOCK_DIMENSION)
     dataset_submatrices = split(dataset_image, BLOCK_DIMENSION, BLOCK_DIMENSION)
 
-    return sum([cosine_similarity(get_vector(matrix_1), get_vector(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)]) / ((RESIZED_DIMENSION / BLOCK_DIMENSION) ** 2)
+    return sum([cosine_similarity(get_vector(matrix_1), get_vector(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)]) / ((RESIZE_DIMENSION / BLOCK_DIMENSION) ** 2)
 
 
 # Prekondisi: input image dan dan dataset image punya ukuran sama yaitu RESIZED_DIMENDION x RESIZED_DIMENDION.
@@ -54,4 +54,4 @@ def compare_from_array(input_image: np.ndarray, dataset_image: np.ndarray):
     input_submatrices = split(input_image, BLOCK_DIMENSION, BLOCK_DIMENSION)
     dataset_submatrices = split(dataset_image, BLOCK_DIMENSION, BLOCK_DIMENSION)
 
-    return sum([cosine_similarity(get_vector(matrix_1), get_vector(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)]) / ((RESIZED_DIMENSION / BLOCK_DIMENSION) ** 2)
+    return sum([cosine_similarity(get_vector(matrix_1), get_vector(matrix_2)) for matrix_1, matrix_2 in zip(input_submatrices, dataset_submatrices)]) / ((RESIZE_DIMENSION / BLOCK_DIMENSION) ** 2)
