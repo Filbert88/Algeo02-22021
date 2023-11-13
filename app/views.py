@@ -305,7 +305,7 @@ def submit_url():
 
 def scrape_and_save_images(url):
     try :
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         soup = BeautifulSoup(response.text, 'html.parser')
 
         images = soup.find_all('img')
