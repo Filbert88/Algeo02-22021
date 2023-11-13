@@ -54,6 +54,15 @@
   gap: 50px;
 }
 
+.camera-container {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  align-items: center;
+  gap: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .photo-box {
   display: flex;
   flex-direction: column;
@@ -73,6 +82,18 @@
   text-align: center;
   width: 700px;
   height: 438px;
+  background-color: #2b2b2b;
+  overflow: hidden;
+  transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+#camera-preview {
+  border: 2px dashed black;
+  position: relative;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 832px;
+  height: 468px;
   background-color: #2b2b2b;
   overflow: hidden;
   transition: border 0.3s ease, background-color 0.3s ease;
@@ -115,6 +136,14 @@
   height: 400px;
 }
 
+.right-panel-camera {
+  display: flex;
+  border-radius: 2px;
+  height: 468px;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .how-link {
   box-shadow: 5px 5px #2b2b2b;
   border: 2px solid #2b2b2b;
@@ -146,6 +175,24 @@
 }
 
 .scrape-button:hover{
+  background-color: rgb(255, 232, 190);
+}
+
+.capture-btn {
+  display: block;
+  border: none;
+  padding: 30px 30px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-left: 20px;
+  background-color: #e0e0e0;
+  box-shadow: 5px 5px #2b2b2b;
+  border: 2px solid #2b2b2b;
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+
+.capture-btn:hover {
   background-color: rgb(255, 232, 190);
 }
 

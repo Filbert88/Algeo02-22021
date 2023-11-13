@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixPlore | App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styleProgram.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+  <style>
+    #preview img {
+      max-width: 500px;
+      max-height: 500px;
+    }
+  </style>
+  <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+  <script src="{{ url_for('static', filename='scroll.js')}}"></script>
+  <script src="{{ url_for('static', filename='formsubmit.js') }}"></script>
+  <script src="{{ url_for('static', filename='handlefile.js') }}"></script>
+  <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
+  <script src="{{ url_for('static', filename='camera.js') }}"></script>
+</head>
+
+<body>
+  <header class="header">
+    <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+    <nav class="navbar">
+      <a href="{{ url_for('index') }}" class="textnav">/Home</a>
+      <a href="{{ url_for('developers') }}" class="textnav">/Developers</a>
+      <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
+      <a href="{{ url_for('program') }}" class="launchcamera">Back /></a>
+    </nav>
+  </header>
+
+  <h1 class="title fade-in-down">Camera Reverse Image Search</h1>
+  <div class="camera-container fade-in-up">
+    <div class="photo-box">
+      <video id="camera-preview" autoplay playsinline></video>
+      <canvas id="frame-canvas" style="display: none;"></canvas>
+    </div>
+
+    <div class="right-panel-camera">
+      <div class="how-container">
+        <a href="{{ url_for('guides') }}" class="how-link">
+          <div class="text-how">How To Use ?</div>
+        </a>
+        <button id="start-camera" class="capture-btn">Start</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+      </div>
+      <form id="colorForm" hx-post="/upload_image_color" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML">
+        <input type="submit" id="colorSubmitButton" style="display: none" />
+      </form>
+      <form id="textureForm" hx-post="/upload_image_texture" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML"
+        style="display: none;">
+        <input type="submit" id="textureSubmitButton" style="display: none" />
+      </form>
+      <div class="text-container">
+        <div class="text-img">Upload Dataset</div>
+      </div>
+      <div class="form-container">
+        <button class="upload-dataset-btn" hx-get="/upload_popup" hx-target="#popup-container"
+          hx-swap="innerHTML">Insert Dataset</button>
+      </div>
+      <div class="text-img">Search Toggle</div>
+      <div class="toggle-wrapper">
+        <div class="toggle-container">
+          <input type="radio" id="color" name="search-toggle" value="color" checked />
+          <label for="color" class="toggle-label">Color</label>
+          <input type="radio" id="texture" name="search-toggle" value="texture" />
+          <label for="texture" class="toggle-label">Texture</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bar-container">
+    <hr class="horizontal-bar">
+    </hr>
+  </div>
+
+  <div id="search-result"></div>
+  <div id="pagination-target"></div>
+  <div id="popup-container"></div>
+  <div id="pdf-container" class="pdf-container"></div>
+</body>
+
+</html>

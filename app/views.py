@@ -35,6 +35,10 @@ def guides():
 def program():
     return render_template('program.html')
 
+@app.route('/camera_page')
+def camera_page():
+    return render_template('camera_page.html')
+
 @app.route('/dataset_images/<path:filename>')
 def serve_dataset_image(filename):
     return send_from_directory('data/img/dataset', filename)

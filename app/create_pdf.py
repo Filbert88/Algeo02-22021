@@ -25,6 +25,7 @@ def create_report():
         result_data = orjson.loads(f.read())
 
     if result_data:
+        total_images = len(result_data)
         pdf_filename = "PixPlore_report.pdf"
         doc = SimpleDocTemplate(os.path.join('app/static',pdf_filename), pagesize=letter, author="PixPlore.")
 
@@ -89,7 +90,7 @@ def create_report():
             temp_paths.append(temp_image_path)
 
             pdf_content += [
-                Paragraph(f"Result {i + 1}", body_style),
+                Paragraph(f"Result {i + 1}/{total_images}", body_style),
                 Image(temp_image_path, width=150, height=150),
                 Spacer(1, 10),
                 Paragraph(f"Similarity: {similarity}", center_style),
