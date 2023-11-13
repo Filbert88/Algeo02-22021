@@ -10,6 +10,10 @@ import orjson
 import threading
 import time
 from app import create_pdf
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, parse_qs
+import mimetypes
 
 @app.route('/')
 def index():
@@ -281,3 +285,71 @@ def delete_download_button():
 @app.route('/webscrape_popup', methods=['GET'])
 def webscrape_popup():
     return render_template('scrape_popup.html')
+
+@app.route('/scrape_url', methods=['POST'])
+def submit_url():
+    time.sleep(0.5)
+    url = request.form['url']
+    have_img = scrape_and_save_images(url)
+    if have_img == 1 :
+        dataset_dir = app.config["DATASET_FOLDER"]
+        start_time = time.time()
+        save_every_image_vec_to_json(dataset_dir)
+        duration = time.time() - start_time
+        print(f"PROCESS TIME: {duration}")
+        return render_template('scrape_success.html', url=url)
+    elif have_img == 0 :
+        return render_template('scrape_no_img.html', url=url)
+    else :
+        return render_template('scrape_fail.html', url=url)
+
+def scrape_and_save_images(url):
+    try :
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        images = soup.find_all('img')
+        if not images:
+            return 0
+
+        dataset_dir = app.config['DATASET_FOLDER']
+        shutil.rmtree(dataset_dir)
+        os.makedirs(dataset_dir)
+
+        for i, img in enumerate(images):
+            img_url = img.get('src')
+            if not img_url:
+                continue
+
+            if not img_url.startswith('http'):
+                img_url = url + img_url
+            
+            parsed_url = urlparse(img_url)
+            query_params = parse_qs(parsed_url.query)
+            if 'url' in query_params:
+                img_path = query_params['url'][0]
+                img_url = urlparse(url).scheme + "://" + urlparse(url).netloc + img_path
+
+            img_response = requests.get(img_url)
+            if img_response.status_code != 200:
+                continue
+
+            content_type = img_response.headers['Content-Type']
+            file_extension = mimetypes.guess_extension(content_type)
+
+            if file_extension != None :
+                if file_extension in ['.jpg', '.jpeg', '.png']:
+                    with open(os.path.join(dataset_dir, f'image_{i}{file_extension}'), 'wb') as file:
+                        file.write(img_response.content)
+
+        if len(os.listdir(dataset_dir)) == 0 :
+            return 0
+        
+        return 1
+    except Exception as e :
+        return 2
+    
+
+@app.route('/webscrape_loading', methods=['GET'])
+def webscrape_loading() :
+    return render_template('scrape_loading.html')

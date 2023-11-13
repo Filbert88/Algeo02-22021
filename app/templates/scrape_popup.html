@@ -1,5 +1,6 @@
 <div class="popup-backdrop">
   <div class="popup" id="popup">
+    <button hx-get="/webscrape_loading" hx-target="#popup" hx-swap="innerHTML" id="hiddenLoadingScrapeButton" style="display: none;"></button>
     <div class="question-container">
       <a href="{{ url_for('guides') }}#webscrape-section">
         <img
@@ -9,17 +10,17 @@
         />
       </a>
     </div>
-    <form id="linkForm">
+    <form hx-post="/scrape_url" hx-target="#popup" hx-swap="innerHTML" onsubmit="document.getElementById('hiddenLoadingScrapeButton').click(); return false;" id="linkForm">
       <div class="scrape-text-container">
         <h2>Web Scraping for Image Dataset</h2>
         <p>
           Please provide a link to a webpage from which you would like to scrape
           images for your dataset. Ensure you have the right to scrape the
-          website and use the images.
+          website and use the images. Can only scrape jpg, png, and jpeg images.
         </p>
       </div>
       <div class="form-input">
-        <input type="url" id="linkInput" placeholder="Insert a link" required />
+        <input type="url" name="url" id="linkInput" placeholder="Insert an URL" required />
       </div>
       <div class="form-input">
         <button type="submit">Submit</button>
