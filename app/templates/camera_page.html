@@ -49,10 +49,10 @@
         </a>
         <button id="start-camera" class="capture-btn">Start</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
       </div>
-      <form id="colorForm" hx-post="/upload_image_color" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML">
+      <form id="colorForm" hx-post="/upload_image_color_camera" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML">
         <input type="submit" id="colorSubmitButton" style="display: none" />
       </form>
-      <form id="textureForm" hx-post="/upload_image_texture" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML"
+      <form id="textureForm" hx-post="/upload_image_texture_camera" hx-encoding="multipart/form-data" hx-target="#search-result" hx-swap="innerHTML"
         style="display: none;">
         <input type="submit" id="textureSubmitButton" style="display: none" />
       </form>
@@ -72,6 +72,7 @@
           <label for="texture" class="toggle-label">Texture</label>
         </div>
       </div>
+      <button id="hiddenSearchButton" style="display: none;"></button>
     </div>
   </div>
   <div class="bar-container">

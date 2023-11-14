@@ -14,6 +14,10 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 import mimetypes
+import base64
+from PIL import Image
+from io import BytesIO
+
 
 @app.route('/')
 def index():
@@ -46,7 +50,7 @@ def serve_dataset_image(filename):
 @app.route('/upload_image_color', methods=['POST'])
 def upload_image_color() :
     if 'image' not in request.files:
-        return redirect(request.url)
+        return "NO IMAGES"
     file = request.files['image']
     if file.filename == '':
         return redirect(request.url)
@@ -62,7 +66,6 @@ def upload_image_color() :
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
         
-        #HANDLE NO DATA
         if len(dataset) == 0 :
             return "<div class='errorMsg'>No Data in Dataset</div>"
         
@@ -233,7 +236,7 @@ def paginate() :
 @app.route('/upload_image_texture', methods=['POST'])
 def upload_image_texture() :
     if 'image' not in request.files:
-        return redirect(request.url)
+        return "Hello"
     file = request.files['image']
     if file.filename == '':
         return redirect(request.url)
@@ -249,7 +252,6 @@ def upload_image_texture() :
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
         
-        #HANDLE NO DATA
         if len(dataset) == 0 :
             return "<div class='errorMsg'>No Data in Dataset</div>"
         
@@ -291,7 +293,7 @@ def webscrape_popup():
     return render_template('scrape_popup.html')
 
 @app.route('/scrape_url', methods=['POST'])
-def submit_url():
+def scrape_url():
     time.sleep(0.5)
     url = request.form['url']
     have_img = scrape_and_save_images(url)
@@ -357,3 +359,94 @@ def scrape_and_save_images(url):
 @app.route('/webscrape_loading', methods=['GET'])
 def webscrape_loading() :
     return render_template('scrape_loading.html')
+
+
+@app.route('/upload_image_color_camera', methods=['POST'])
+def upload_image_color_camera() :
+    if 'image' not in request.form:
+        return "No image data received"
+
+    data_url = request.form['image']
+    encoded = data_url
+    image_data = base64.b64decode(encoded)
+    image = Image.open(BytesIO(image_data))
+    filename = "uploaded_image.png"
+
+    upload_dir = app.config['UPLOAD_FOLDER']
+    shutil.rmtree(upload_dir)
+    os.makedirs(upload_dir)
+    save_path = os.path.join(upload_dir, filename)
+    image.save(save_path, format='PNG')
+    start = time.time()
+    vec = color_cbir.get_vec_from_hsv_load(save_path)
+    with open('app/data/dataset_vec.json', 'rb') as f:
+        dataset = orjson.loads(f.read())
+    
+    if len(dataset) == 0 :
+        return "<div class='errorMsg'>No Data in Dataset</div>"
+    
+    similar_images = []
+    for data_el in dataset :
+        similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
+        if similarity >= 0.6 :
+            similar_images.append({
+                "filename" : data_el["filename"],
+                "type" : "COLOR",
+                "file_path" : data_el["file_path"],
+                "similarity" : str(similarity),
+                "image_url": url_for('serve_dataset_image', filename=data_el["filename"])
+            })
+    similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
+    end = time.time()
+    duration = round(end - start, 2)
+    
+    with open('app/data/result.json', 'wb') as f:
+        f.write(orjson.dumps(similar_images))
+
+    if len(similar_images) == 0 :
+        return render_template('noresult.html', result=0, duration=duration)
+    return render_template('result.html', result=len(similar_images), duration=duration)
+
+@app.route('/upload_image_texture_camera', methods=['POST'])
+def upload_image_texture_camera() :
+    if 'image' not in request.form:
+        return "No image data received"
+
+    data_url = request.form['image']
+    encoded = data_url
+    image_data = base64.b64decode(encoded)
+    image = Image.open(BytesIO(image_data))
+    filename = "uploaded_image.png"
+
+    upload_dir = app.config['UPLOAD_FOLDER']
+    shutil.rmtree(upload_dir)
+    os.makedirs(upload_dir)
+    save_path = os.path.join(upload_dir, filename)
+    image.save(save_path, format='PNG')
+    start = time.time()
+    vec = texture_cbir.get_vector_from_location(save_path)
+    with open('app/data/dataset_vec.json', 'rb') as f:
+        dataset = orjson.loads(f.read())
+    
+    if len(dataset) == 0 :
+        return "<div class='errorMsg'>No Data in Dataset</div>"
+    
+    similar_images = []
+    for data_el in dataset :
+        similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_texture"].strip('[]'), sep=', '))
+        if similarity >= 0.6 :
+            similar_images.append({
+                "filename" : data_el["filename"],
+                "type" : "TEXTURE",
+                "file_path" : data_el["file_path"],
+                "similarity" : str(similarity),
+                "image_url" : url_for('serve_dataset_image', filename=data_el["filename"])
+            })
+    similar_images = sorted(similar_images, key=lambda x: x["similarity"], reverse=True)
+    end = time.time()
+    duration = round(end - start, 2)
+    
+    with open('app/data/result.json', 'wb') as f:
+        f.write(orjson.dumps(similar_images))
+    
+    return render_template('result.html', result=len(similar_images), duration=duration)
