@@ -1,8 +1,0 @@
-[package]
-name = "rust_zip_extractor"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-zip-extensions = "0.6"
-zip = "0.6.6"
