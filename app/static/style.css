@@ -22,17 +22,6 @@ body {
   background-position: center;
 }
 
-/* body::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.2);
-} */
-
 .header {
   position: fixed;
   top: 0;
@@ -45,9 +34,9 @@ body {
   align-items: center;
   z-index: 1000;
   background-color: rgba(248, 239, 236, 0.8);
-  backdrop-filter: blur(15px); /* Blurring effect */
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  transition: all 0.3s ease-in-out; /* Smooth transition for all changes */
+  transition: all 0.3s ease-in-out;
 }
 
 .header .logo,
@@ -103,8 +92,8 @@ body {
   font-weight: 500;
   text-decoration: none;
   margin-left: 40px;
-  background: linear-gradient(0deg, rgb(255, 232, 190), rgb(255, 232, 190)) no-repeat left / 0
-    var(--bg-h);
+  background: linear-gradient(0deg, rgb(255, 232, 190), rgb(255, 232, 190))
+    no-repeat left / 0 var(--bg-h);
   --bg-h: 100%;
   box-shadow: 5px 5px #2b2b2b;
   border: 2px solid #2b2b2b;
@@ -130,8 +119,8 @@ body {
   font-weight: 500;
   text-decoration: none;
   margin-left: 40px;
-  background: linear-gradient(0deg, rgb(255, 232, 190), rgb(255, 232, 190)) no-repeat left / 0
-    var(--bg-h);
+  background: linear-gradient(0deg, rgb(255, 232, 190), rgb(255, 232, 190))
+    no-repeat left / 0 var(--bg-h);
   --bg-h: 100%;
   box-shadow: 5px 5px #2b2b2b;
   border: 2px solid #2b2b2b;
@@ -238,15 +227,14 @@ body {
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   width: calc(25% - (3 * 20px / 4));
   background-color: #e0e0e0;
   transition: transform 0.3s ease;
   overflow: hidden;
-
 }
 
-.similarity{
+.similarity {
   text-align: center;
   width: 100%;
   padding: 5px 0;
@@ -261,9 +249,9 @@ body {
 }
 
 .card img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .download-btn {
@@ -298,13 +286,6 @@ body {
   opacity: 0.8;
 }
 
-/* .card img {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-} */
-
 .card-container .card-container {
   padding: 2px 16px;
 }
@@ -317,7 +298,7 @@ body {
   height: 25vh;
 }
 
-.dev-wrapper h1{
+.dev-wrapper h1 {
   font-size: 30px;
 }
 
@@ -408,21 +389,19 @@ body {
   overflow-x: auto;
   margin: 50px 10px;
   gap: 40px;
-  /* padding: 0 100px; */
 }
-.carddev .dev-photo{
+.carddev .dev-photo {
   height: 350px;
   width: 350px;
   object-fit: cover;
 }
-
 
 .carddev {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 300px;
   height: auto;
-  max-height:fit-content;
+  max-height: fit-content;
   border-radius: 2px;
   text-align: center;
   font-size: 18px;
@@ -498,7 +477,6 @@ body {
   margin-bottom: 40px;
 }
 
-
 .guides-container h1 {
   font-size: 40px;
   margin-bottom: 40px;
@@ -569,7 +547,7 @@ button.learn-more .circle .icon {
   top: 0;
   bottom: 0;
   margin: auto;
-  background:rgba(248, 239, 236, 1);
+  background: rgba(248, 239, 236, 1);
 }
 
 button.learn-more .circle .icon.arrow {
@@ -674,7 +652,6 @@ button:hover .button-text {
 }
 
 .photos-slider-right {
-  /* margin-top: 10px; */
   display: inline-block;
   animation: 80s slide-right infinite linear;
 }
@@ -697,7 +674,6 @@ button:hover .button-text {
   }
 }
 
-/* pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -709,7 +685,6 @@ button:hover .button-text {
 .pagination button {
   padding: 12px 18px;
   font-size: 15px;
-  /* margin: 0 5px; */
   background-color: #2b2b2b;
   color: white;
   border: none;
@@ -742,10 +717,10 @@ button:hover .button-text {
   display: inline-block;
   padding: 12px 18px;
   background-color: #2b2b2b;
-  color: white; 
+  color: white;
   border-radius: 2px;
   font-size: 1rem;
-  border: 1px solid white; 
+  border: 1px solid white;
 }
 
 .tech-stack {
@@ -790,7 +765,7 @@ button:hover .button-text {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.tech-card-htmx{
+.tech-card-htmx {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -802,14 +777,14 @@ button:hover .button-text {
   position: relative;
 }
 
-.tech-card-htmx img{
+.tech-card-htmx img {
   width: 300px;
   height: 200px;
   object-fit: contain;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.tech-card-htmx p{
+.tech-card-htmx p {
   font-size: 16px;
   color: #2b2b2b;
   margin-top: 10px;
@@ -827,8 +802,12 @@ button:hover .button-text {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .fade-in-once {
@@ -894,5 +873,3 @@ button:hover .button-text {
 .fade-in-down.start-fade-in-down {
   animation: fadeInDown 1s ease forwards;
 }
-
-

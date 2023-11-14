@@ -1,39 +1,19 @@
 <h2>Upload ZIP</h2>
-<button hx-get="/show_loading" hx-target="#popup" hx-swap="innerHTML" id="hiddenLoadingButton" style="display: none;"></button>
+<button hx-get="/show_loading" hx-target="#popup" hx-swap="innerHTML" id="hiddenLoadingButton"
+  style="display: none;"></button>
 <div class="file-upload-container">
-  <form
-    hx-post="/upload_zip"
-    enctype="multipart/form-data"
-    hx-target="#popup"
-    hx-swap="innerHTML"
-  >
+  <form hx-post="/upload_zip" enctype="multipart/form-data" hx-target="#popup" hx-swap="innerHTML">
     <div class="input-wrapper">
       <label for="zipfile" class="popup-upload-btn">Choose Zip File</label>
-      <input
-        id="zipfile"
-        type="file"
-        name="zipfile"
-        accept=".zip"
-        class="zip-input"
-        style="display: none"
-        onchange="updateFileName()"
-      />
-      <label for="zipUpload" class="popup-upload" onclick="document.getElementById('hiddenLoadingButton').click()">Upload Zip</label>
+      <input id="zipfile" type="file" name="zipfile" accept=".zip" class="zip-input" style="display: none"
+        onchange="updateFileName()" />
+      <label for="zipUpload" class="popup-upload"
+        onclick="document.getElementById('hiddenLoadingButton').click()">Upload Zip</label>
     </div>
     <div class="text-popup">
       <span id="zip-file-name">No file chosen</span>
     </div>
-    <input
-      id="zipUpload"
-      type="submit"
-      value="Upload ZIP"
-      style="display: none"
-    />
-    <button
-      hx-get="/upload_popup"
-      hx-target="#popup-container"
-      hx-swap="innerHTML"
-      class="close-button"
-    >X</button>
+    <input id="zipUpload" type="submit" value="Upload ZIP" style="display: none" />
+    <button hx-get="/upload_popup" hx-target="#popup-container" hx-swap="innerHTML" class="close-button">X</button>
   </form>
 </div>

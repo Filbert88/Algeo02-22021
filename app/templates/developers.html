@@ -1,150 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PixPlore | Devs</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link
-      rel="icon"
-      href="{{ url_for('static', filename='img/icon.jpg') }}"
-      type="image/jpg"
-    />
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='img/icon.jpg') }}"
-      type="image/jpg"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
-  </head>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <header class="header">
-      <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
-      <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="textnav">/Home</a>
-        <a href="{{ url_for('developers') }}" class="textnav active">/Developers</a>
-        <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
-        <a href="{{ url_for('program') }}" class="launchApp">Launch App |></a>
-      </nav>
-    </header>
-    <div class="dev-wrapper fade-in-down">
-      <div class="dev-demo">
-        <h1>The Team.</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixPlore | Devs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg" />
+</head>
+
+<body>
+  <header class="header">
+    <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+    <nav class="navbar">
+      <a href="{{ url_for('index') }}" class="textnav">/Home</a>
+      <a href="{{ url_for('developers') }}" class="textnav active">/Developers</a>
+      <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
+      <a href="{{ url_for('program') }}" class="launchApp">Launch App |></a>
+    </nav>
+  </header>
+  <div class="dev-wrapper fade-in-down">
+    <div class="dev-demo">
+      <h1>The Team.</h1>
+    </div>
+    <div class="dev-container">
+      <p>
+        Our passion lies in harnessing the power of CBIR to create more intuitive, efficient, and engaging user
+        experiences. Join us on our journey as we redefine the way we search, discover, and connect with visual
+        information.
+      </p>
+    </div>
+  </div>
+  <div class="dev-content-container fade-in-right">
+    <div class="dev-image-container">
+      <img src="{{ url_for('static', filename='img/Taman Bermain.jpg') }}" alt="Avatar" style="width: 100%" />
+    </div>
+    <div class="dev-text-container">
+      <h2>Meet us!</h2>
+      <p>
+        We are a close-knit group of three individuals, each bringing our unique strengths and perspectives to the
+        table. Our journey began in Labtek V, a hub of innovation and technology within the prestigious Institute of
+        Technology Bandung (ITB). Our shared passion for technology and commitment to excellence have been the driving
+        forces behind our collaboration. As a team, we pride ourselves on our diverse skills, collaborative spirit, and
+        dedication to making a meaningful impact through our work.
+      </p>
+    </div>
+  </div>
+  <section class="tech-stack fade-in-left">
+    <h1>
+      < Our Tech Stack>
+    </h1>
+    <div class="tech-icons">
+      <div class="tech-card" title="Flask - Micro web framework for building web applications in Python.">
+        <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">
+          <img src="{{ url_for('static', filename='img/flask.svg')}}" alt="Flask" />
+        </a>
+        <p>Flask</p>
       </div>
-      <div class="dev-container">
-        <p>
-          Our passion lies in harnessing the power of CBIR to create more intuitive, efficient, and engaging user experiences. Join us on our journey as we redefine the way we search, discover, and connect with visual information.  
-        </p>
+      <div class="tech-card-htmx" title="Htmx - A modern library for Ajax, CSS Transitions, WebSockets, and more.">
+        <a href="https://htmx.org/" target="_blank">
+          <img src="{{ url_for('static', filename='img/HTMX_logo.png')}}" alt="htmx" />
+        </a>
+        <p>HTMX</p>
       </div>
     </div>
-    <div class="dev-content-container fade-in-right">
-      <div class="dev-image-container">
-        <img
-          src="{{ url_for('static', filename='img/Taman Bermain.jpg') }}"
-          alt="Avatar"
-          style="width: 100%"
-        />
+  </section>
+
+  <div class="dev-developer-wrapper fade-in-up">
+    <div class="dev-text-developers">
+      <h1>{ Our Developers }</h1>
+    </div>
+    <div class="carddev-container">
+      <div class="carddev">
+        <img class="dev-photo" src="{{ url_for('static', filename='img/filbert.jpg') }}" alt="Developer"
+          class="developer" style="width: 100%" />
+        <p class="name">Filbert</p>
+        <p class="id">13522021</p>
+        <p class="role">Front End</p>
+        <a href="https://github.com/Filbert88" target="_blank">
+          <img src="{{ url_for('static', filename='img/github_logo.svg') }}" alt="github" class="github-logo" />
+        </a>
       </div>
-      <div class="dev-text-container">
-        <h2>Meet us!</h2>
-        <p>
-          We are a close-knit group of three individuals, each bringing our unique strengths and perspectives to the table. Our journey began in Labtek V, a hub of innovation and technology within the prestigious Institute of Technology Bandung (ITB). Our shared passion for technology and commitment to excellence have been the driving forces behind our collaboration. As a team, we pride ourselves on our diverse skills, collaborative spirit, and dedication to making a meaningful impact through our work.
-        </p>
+      <div class="carddev">
+        <img class="dev-photo" src="{{ url_for('static', filename='img/juan.jpg') }}" alt="Developer" class="developer"
+          style="width: 100%" />
+        <p class="name">Juan Alfred Widjaya</p>
+        <p class="id">13522073</p>
+        <p class="role">Back End</p>
+        <a href="https://github.com/juanaw6" target="_blank">
+          <img src="{{ url_for('static', filename='img/github_logo.svg') }}" alt="github" class="github-logo" />
+        </a>
+      </div>
+      <div class="carddev">
+        <img class="dev-photo" src="{{ url_for('static', filename='img/azmi.jpg') }}" alt="Developer" class="developer"
+          style="width: 100%" />
+        <p class="name">Azmi Mahmud Bahzeid</p>
+        <p class="id">13522109</p>
+        <p class="role">Back End</p>
+        <a href="https://github.com/RealAzzmi" target="_blank">
+          <img src="{{ url_for('static', filename='img/github_logo.svg') }}" alt="github" class="github-logo" />
+        </a>
       </div>
     </div>
-    <section class="tech-stack fade-in-left">
-      <h1>< Our Tech Stack ></h1>
-      <div class="tech-icons">
-        <div class="tech-card" title="Flask - Micro web framework for building web applications in Python.">
-          <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">
-            <img src="{{ url_for('static', filename='img/flask.svg')}}" alt="Flask" />
-          </a>
-          <p>Flask</p>
-        </div>
-        <div class="tech-card-htmx" title="Htmx - A modern library for Ajax, CSS Transitions, WebSockets, and more.">
-          <a href="https://htmx.org/" target="_blank"> 
-            <img src="{{ url_for('static', filename='img/HTMX_logo.png')}}" alt="htmx"/> 
-          </a>
-          <p>HTMX</p>
-        </div>
-      </div>
-    </section>
-    
-    <div class="dev-developer-wrapper fade-in-up">
-        <div  class="dev-text-developers">
-            <h1>{ Our Developers }</h1>
-        </div>
-        <div class="carddev-container">
-            <div class="carddev">
-                <img
-                    class="dev-photo"
-                    src="{{ url_for('static', filename='img/filbert.jpg') }}"
-                    alt="Developer"
-                    class="developer"
-                    style="width: 100%"
-                />
-                <p class="name">Filbert</p>
-                <p class="id">13522021</p>
-                <p class="role">Front End</p>
-                <a href="https://github.com/Filbert88" target="_blank">
-                  <img
-                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
-                    alt="github"
-                    class="github-logo"
-                  />
-                </a>
-            </div>
-            <div class="carddev">
-                <img
-                    class="dev-photo"
-                    src="{{ url_for('static', filename='img/juan.jpg') }}"
-                    alt="Developer"
-                    class="developer"
-                    style="width: 100%"
-                />
-                <p class="name">Juan Alfred Widjaya</p>
-                <p class="id">13522073</p>
-                <p class="role">Back End</p>
-                <a href="https://github.com/juanaw6" target="_blank">
-                  <img
-                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
-                    alt="github"
-                    class="github-logo"
-                  />
-                </a>
-            </div>
-            <div class="carddev">
-                <img
-                    class="dev-photo"
-                    src="{{ url_for('static', filename='img/azmi.jpg') }}"
-                    alt="Developer"
-                    class="developer"
-                    style="width: 100%"
-                />
-                <p class="name">Azmi Mahmud Bahzeid</p>
-                <p class="id">13522109</p>
-                <p class="role">Back End</p>
-                <a href="https://github.com/RealAzzmi" target="_blank">
-                  <img
-                    src="{{ url_for('static', filename='img/github_logo.svg') }}"
-                    alt="github"
-                    class="github-logo"
-                  />
-                </a>
-            </div>
-        </div>
-      </div>
-    </div>
-    <script src="{{ url_for('static', filename='scroll.js')}}"></script>
-    <script>
-      AOS.init({
-        disable: 'mobile'
-      });
-    </script>
-        <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
-  </body>
+  </div>
+  </div>
+  <script src="{{ url_for('static', filename='scroll.js')}}"></script>
+  <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
+</body>
+
 </html>

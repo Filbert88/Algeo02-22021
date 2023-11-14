@@ -18,18 +18,6 @@ def resize_from_location(image_location: str, width, height) -> np.ndarray:
 def resize_from_array(image: np.ndarray, width, height) -> np.ndarray:
     return cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
 
-def split(array, nrows, ncols):
-    if array.shape[0] % nrows != 0:
-        array = array[:-(array.shape[0] % nrows)]
-    if array.shape[1] % ncols != 0:
-        array = array[:, :-(array.shape[1] % ncols)]
-
-    _, h, _ = array.shape
-    return (array.reshape(h//nrows, nrows, -1, ncols, 3)
-                 .swapaxes(1, 2)
-                 .reshape(-1, nrows, ncols, 3))
-
-
 def cosine_similarity(vec_1, vec_2):
     return np.dot(vec_1, vec_2) / (np.linalg.norm(vec_1) * np.linalg.norm(vec_2))
 

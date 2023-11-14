@@ -16,9 +16,7 @@
     }
   </style>
   <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
   <script src="{{ url_for('static', filename='scroll.js')}}"></script>
-  <script src="{{ url_for('static', filename='formsubmit.js') }}"></script>
   <script src="{{ url_for('static', filename='handlefile.js') }}"></script>
   <script src="{{ url_for('static', filename='fadeanimation.js') }}"></script>
   <script src="{{ url_for('static', filename='camera.js') }}"></script>
@@ -39,7 +37,6 @@
   <div class="camera-container fade-in-up">
     <div class="photo-box">
       <video id="camera-preview" autoplay playsinline></video>
-      <canvas id="frame-canvas" style="display: none;"></canvas>
     </div>
 
     <div class="right-panel-camera">

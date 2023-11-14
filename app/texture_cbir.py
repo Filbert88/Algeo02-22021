@@ -23,7 +23,6 @@ def crop_preprocessing_to_array(image: np.ndarray):
     cropped = image[0:CROPPED_DIMENSION, 0:CROPPED_DIMENSION]
     return cropped
 
-
 # Prekondisi: Gambar harus berukuran CROPPED_DIMENSION x CROPPED_DIMENSION
 def get_co_occurence_matrix(image: np.ndarray) -> np.ndarray:
     all_but_first_column = image[:,1:].ravel()

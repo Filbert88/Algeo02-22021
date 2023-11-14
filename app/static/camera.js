@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenSearchButton = document.getElementById("hiddenSearchButton");
   let cameraStream = null;
   let captureInterval = null;
-  let canvas = document.createElement('canvas');
+  let canvas = document.createElement("canvas");
 
   startCameraButton.addEventListener("click", function () {
     if (this.textContent === "Start") {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imageInput.type = "hidden";
     imageInput.name = "image";
     const dataURL = canvas.toDataURL("image/png");
-    const base64Data = dataURL.split(',')[1];
+    const base64Data = dataURL.split(",")[1];
     imageInput.value = base64Data;
 
     if (isColorSelected) {

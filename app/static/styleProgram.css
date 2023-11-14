@@ -56,7 +56,7 @@
 
 .camera-container {
   display: flex;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
   align-items: center;
   gap: 50px;
   padding-left: 100px;
@@ -68,7 +68,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 50%; */
   height: auto;
   text-align: center;
   border-radius: 8px;
@@ -155,13 +154,13 @@
   background-color: rgb(255, 232, 190);
 }
 
-.how-container{
+.how-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.scrape-button{
+.scrape-button {
   display: block;
   border: none;
   padding: 30px 94px;
@@ -174,7 +173,7 @@
   transition: all 0.3s ease;
 }
 
-.scrape-button:hover{
+.scrape-button:hover {
   background-color: rgb(255, 232, 190);
 }
 
@@ -211,7 +210,7 @@
   margin-top: 40px;
 }
 
-.pdf-container{
+.pdf-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -233,7 +232,7 @@
 }
 
 .search-button button:hover {
-  background-color: rgb(255, 232, 190)
+  background-color: rgb(255, 232, 190);
 }
 
 .toggle-container {
@@ -388,7 +387,8 @@ input[type="radio"]:checked + label {
   background: #e0e0e0;
 }
 
-.zip-btn:hover,.folder-btn:hover{
+.zip-btn:hover,
+.folder-btn:hover {
   background-color: rgb(255, 232, 190);
   transform: translateY(-3px);
 }
@@ -397,21 +397,20 @@ input[type="radio"]:checked + label {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* justify-content: space-between; */
 }
 
 .input-wrapper {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 10px; /* Spacing between elements */
+  gap: 10px;
 }
 
 .popup-upload-btn {
   font-size: 16px;
   padding: 20px 15px;
   margin-right: 10px;
-  background-color: rgba(248, 239, 236, 1);
+  background-color:#e0e0e0;
   color: #2b2b2b;
   border-radius: 2px;
   cursor: pointer;
@@ -426,7 +425,7 @@ input[type="radio"]:checked + label {
 .popup-upload {
   font-size: 16px;
   padding: 20px 30px;
-  background-color: rgba(248, 239, 236, 1); /* Example green color */
+  background-color: #e0e0e0;
   color: #2b2b2b;
   border: none;
   border-radius: 2px;
@@ -437,7 +436,8 @@ input[type="radio"]:checked + label {
   border: 2px solid #2b2b2b;
 }
 
-.popup-upload-btn:hover, .popup-upload:hover {
+.popup-upload-btn:hover,
+.popup-upload:hover {
   background-color: rgb(255, 232, 190);
   transform: translateY(-3px);
 }
@@ -463,7 +463,7 @@ input[type="radio"]:checked + label {
   padding: 0px 10px;
 }
 
-.close-button:hover{
+.close-button:hover {
   transform: rotate(-90deg);
 }
 
@@ -478,7 +478,7 @@ input[type="radio"]:checked + label {
   color: #2b2b2b;
 }
 
-.close-wrapper{
+.close-wrapper {
   display: flex;
   flex-direction: row;
 }
@@ -537,20 +537,20 @@ input[type="radio"]:checked + label {
   color: #2b2b2b;
 }
 
-.scrape-text-container{
+.scrape-text-container {
   margin-top: 40px;
 }
-.scrape-text-container p{
+.scrape-text-container p {
   padding-left: 5px;
   padding-right: 5px;
   font-size: 16px;
 }
 
-.scrape-text-container h2{
+.scrape-text-container h2 {
   font-size: 20px;
 }
 
-.question-container img{
+.question-container img {
   width: 20px;
   height: 20px;
   object-fit: cover;
@@ -558,10 +558,6 @@ input[type="radio"]:checked + label {
   top: 20px;
   left: 35px;
 }
-
-/* .question-container img:hover{
-  background-image: url("img/question_black.png");
-} */
 
 .popup h2 {
   margin-top: 10px;
@@ -580,12 +576,10 @@ input[type="radio"]:checked + label {
   width: 121px;
   height: 67.2px;
   color: #2b2b2b;
-  --c: radial-gradient(farthest-side,currentColor 96%,#0000);
-  background: var(--c) 100% 100% /30% 60%,
-         var(--c) 70%  0    /50% 100%,
-         var(--c) 0    100% /36% 68%,
-         var(--c) 27%  18%  /26% 40%,
-         linear-gradient(currentColor 0 0) bottom/67% 58%;
+  --c: radial-gradient(farthest-side, currentColor 96%, #0000);
+  background: var(--c) 100% 100% /30% 60%, var(--c) 70% 0 /50% 100%,
+    var(--c) 0 100% /36% 68%, var(--c) 27% 18% /26% 40%,
+    linear-gradient(currentColor 0 0) bottom/67% 58%;
   background-repeat: no-repeat;
   position: relative;
 }
@@ -601,8 +595,8 @@ input[type="radio"]:checked + label {
 
 @keyframes pulse-hjvm54 {
   to {
-     transform: scale(1.4);
-     opacity: 0;
+    transform: scale(1.4);
+    opacity: 0;
   }
 }
 
@@ -612,7 +606,7 @@ input[type="radio"]:checked + label {
   height: 22.4px;
   border-radius: 50%;
   background: #2b2b2b;
-  box-shadow: 0 0 0 0 rgba(43,43,43,0.5);
+  box-shadow: 0 0 0 0 rgba(43, 43, 43, 0.5);
   animation: pulse-kefe91md 2.0999999999999996s infinite linear;
   position: relative;
 }
@@ -623,7 +617,7 @@ input[type="radio"]:checked + label {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 rgba(43,43,43,0.5);
+  box-shadow: 0 0 0 0 rgba(43, 43, 43, 0.5);
   animation: inherit;
   animation-delay: -0.7s;
 }
