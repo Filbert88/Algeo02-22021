@@ -5,50 +5,32 @@ import requests
 from urllib.parse import urlparse, parse_qs
 from bs4 import BeautifulSoup
 import mimetypes
-import threading
 import orjson
 import shutil
 from app import app
+from joblib import Parallel, delayed
 
 def pathjoin(dir, filename) :
     return dir + '/' + filename
 
-def process_file_chunk(file_chunk, result_list):
-    temp_data = []
-    for filename in file_chunk:
-        vec_color = local_color_cbir.get_block_vector_from_image(filename)
-        vec_texture = texture_cbir.get_vector_from_location(filename)
-        texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
-        temp_data.append({
-            "filename": filename.split('/')[-1],
-            "file_path": filename,
-            "vec_color": str(vec_color),
-            "vec_texture": str(texture)
-        })
-    result_list.extend(temp_data)
+def process_file(filename):
+    vec_color = local_color_cbir.get_block_vector_from_image(filename)
+    vec_texture = texture_cbir.get_vector_from_location(filename)
+    texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
+
+    return {
+        "filename": filename.split('/')[-1],
+        "file_path": filename,
+        "vec_color": str(vec_color),
+        "vec_texture": str(texture)
+    }
 
 def save_every_image_vec_to_json(dir_path):
-    file_list = [pathjoin(dir_path, filename) for filename in os.listdir(dir_path)]
-    total_files = len(file_list)
-    
-    num_threads = 6
-    chunk_size = max(1, total_files // num_threads)
-
-    file_chunks = [file_list[i:i + chunk_size] for i in range(0, total_files, chunk_size)]
-
-    thread_results = []
-
-    threads = []
-    for chunk in file_chunks:
-        thread = threading.Thread(target=process_file_chunk, args=(chunk, thread_results))
-        threads.append(thread)
-        thread.start()
-
-    for thread in threads:
-        thread.join()
+    file_list = [pathjoin(dir_path, filename) for filename in os.listdir(dir_path) if not filename.startswith('.')]
+    results = Parallel(n_jobs=-1)(delayed(process_file)(filename) for filename in file_list)
 
     with open('app/data/dataset_vec.json', 'wb') as f:
-        f.write(orjson.dumps(thread_results))
+        f.write(orjson.dumps(results))
 
 def extract_images_from_zip(file, dir_path):
     dataset_folder = dir_path
