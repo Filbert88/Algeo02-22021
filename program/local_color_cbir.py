@@ -11,22 +11,38 @@ def resize_preprocessing_to_array(image: np.ndarray):
     resized = resize_from_array(image, RESIZE_DIMENSION, RESIZE_DIMENSION)
     return resized
 
-def get_vector(image: np.ndarray) -> np.ndarray:
-    h_ranges_spatial = np.array([[0, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 148], [148.5, 157.5], [158.0, 180.0]])
-    s_ranges_spatial = np.array([[0, 255]])
-    v_ranges_spatial = np.array([[0, 255]])
+# def get_vector(image: np.ndarray) -> np.ndarray:
+#     h_ranges_spatial = np.array([[0, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 148], [148.5, 157.5], [158.0, 180.0]])
+#     s_ranges_spatial = np.array([[0, 255]])
+#     v_ranges_spatial = np.array([[0, 255]])
 
-    h = round(np.mean(image[:,:,0])) 
-    s = round(np.mean(image[:,:,1]))  
-    v = round(np.mean(image[:,:,2]))  
+#     h = round(np.mean(image[:,:,0])) 
+#     s = round(np.mean(image[:,:,1]))  
+#     v = round(np.mean(image[:,:,2]))  
     
-    h_index = np.where((h >= h_ranges_spatial[:, 0]) & (h <= h_ranges_spatial[:, 1]))[0]
-    s_index = np.where((s >= s_ranges_spatial[:, 0]) & (s <= s_ranges_spatial[:, 1]))[0]
-    v_index = np.where((v >= v_ranges_spatial[:, 0]) & (v <= v_ranges_spatial[:, 1]))[0]
+#     h_index = np.where((h >= h_ranges_spatial[:, 0]) & (h <= h_ranges_spatial[:, 1]))[0]
+#     s_index = np.where((s >= s_ranges_spatial[:, 0]) & (s <= s_ranges_spatial[:, 1]))[0]
+#     v_index = np.where((v >= v_ranges_spatial[:, 0]) & (v <= v_ranges_spatial[:, 1]))[0]
     
-    vector = np.zeros(72)
-    vector[9 * h_index + 3 * s_index + v_index] = 1
-    return vector
+#     vector = np.zeros(72)
+#     vector[9 * h_index + 3 * s_index + v_index] = 1
+#     return vector
+
+h_ranges = np.array([[0, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 147.5], [147.5, 157.5], [158.0, 180.0]])
+s_ranges = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
+v_ranges = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
+
+def get_vector(image: np.ndarray) -> np.ndarray:
+    h_masks = [(h[0] <= image[:, :, 0]) & (image[:, :, 0] <= h[1]) for h in h_ranges]
+    s_masks = [(s[0] <= image[:, :, 1]) & (image[:, :, 1] <= s[1]) for s in s_ranges]
+    v_masks = [(v[0] <= image[:, :, 2]) & (image[:, :, 2] <= v[1]) for v in v_ranges]
+
+    histogram = [(hm & sm & vm) for hm in h_masks for sm in s_masks for vm in v_masks]
+
+    color_vector = [np.sum(bin) for bin in histogram]
+
+    return color_vector
+
 
 def rgb_to_hsv_vectorized(bgr_image):
     rgb_image = bgr_image[..., ::-1]
