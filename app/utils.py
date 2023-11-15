@@ -31,8 +31,8 @@ def save_every_image_vec_to_json(dir_path):
     file_list = [pathjoin(dir_path, filename) for filename in os.listdir(dir_path)]
     total_files = len(file_list)
     
-    num_threads = 8
-    chunk_size = total_files // num_threads
+    num_threads = 6
+    chunk_size = max(1, total_files // num_threads)
 
     file_chunks = [file_list[i:i + chunk_size] for i in range(0, total_files, chunk_size)]
 
