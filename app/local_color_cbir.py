@@ -1,20 +1,31 @@
 import numpy as np
 import cv2
 
+RESIZE_DIMENSION = 150
+BLOCK_DIMENSION = 3
+
+def resize_from_array(image: np.ndarray, width, height) -> np.ndarray:
+    return cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
+
+def resize_preprocessing_to_array(image: np.ndarray):
+    resized = resize_from_array(image, RESIZE_DIMENSION, RESIZE_DIMENSION)
+    return resized
+
 def get_vector(image: np.ndarray) -> np.ndarray:
-    h_ranges = [[158.0, 180.0], [0.5, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 147.5], [147.5, 157.5]]
-    s_ranges = [[0, 50.5], [51.0, 179.0], [179.5, 255]]
-    v_ranges = [[0, 50.5], [51.0, 179.0], [179.5, 255]]
+    h_ranges = np.array([[0, 12.5], [13.0, 20.0], [20.5, 60.0], [60.5, 95.0], [95.5, 135.0], [135.5, 147.5], [147.5, 157.5], [158.0, 180.0]])
+    s_ranges = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
+    v_ranges = np.array([[0, 50.5], [51.0, 179.0], [179.5, 255]])
 
     h_masks = [(h[0] <= image[:, :, 0]) & (image[:, :, 0] <= h[1]) for h in h_ranges]
     s_masks = [(s[0] <= image[:, :, 1]) & (image[:, :, 1] <= s[1]) for s in s_ranges]
     v_masks = [(v[0] <= image[:, :, 2]) & (image[:, :, 2] <= v[1]) for v in v_ranges]
 
     histogram = [(hm & sm & vm) for hm in h_masks for sm in s_masks for vm in v_masks]
-    
+
     color_vector = [np.sum(bin) for bin in histogram]
-    
+
     return color_vector
+
 
 def rgb_to_hsv_vectorized(bgr_image):
     rgb_image = bgr_image[..., ::-1]
@@ -52,15 +63,30 @@ def rgb_to_hsv_vectorized(bgr_image):
 
 def load_image_as_hsv(image_location: str) -> np.ndarray:
     bgr_image = cv2.imread(image_location)
-
-    if bgr_image is None:
-        raise FileNotFoundError(f"No image found at {image_location}")
-
     hsv_image = rgb_to_hsv_vectorized(bgr_image)
     return hsv_image
 
-def get_vec_from_hsv_load(image_location: str) -> np.ndarray:
-    return get_vector(load_image_as_hsv(image_location))
+def split_image_and_compute_vectors(image: np.ndarray) :
+    image = resize_preprocessing_to_array(image)
+    block_vectors = []
+    block_height = image.shape[0] // 3
+    block_width = image.shape[1] // 3
+    for i in range(3):
+        for j in range(3):
+            block = image[i * block_height:(i + 1) * block_height, j * block_width:(j + 1) * block_width]
+            vector = get_vector(block)
+            block_vectors.append(vector)
+    return block_vectors
 
-def cosine_similarity(vec1, vec2, h_bins=-1, s_bins=-1, v_bins=-1):
-    return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
+def cosine_similarity(vec_1, vec_2):
+    return np.dot(vec_1, vec_2) / (np.linalg.norm(vec_1) * np.linalg.norm(vec_2))
+
+#calculate similarity
+def calculate_average_similarity(input_vectors: np.array, dataset_vectors: np.array) -> float:
+    similarities = np.array([cosine_similarity(v1, v2) for v1, v2 in zip(input_vectors, dataset_vectors)])
+    average_similarity = np.mean(similarities)
+    return average_similarity
+
+#get vector 1x9
+def get_block_vector_from_image(image_location: str) :
+    return split_image_and_compute_vectors(load_image_as_hsv(image_location))

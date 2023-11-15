@@ -17,8 +17,8 @@ def test_resizing():
     local_color_cbir.resize_preprocessing_to_location(location_1, "/home/azzmi/projects/Algeo02-22021/images/apples/resized.png")
 
 def test_spatial_without_resizing():
-    location_1 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\1.jpg"
-    location_2 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\wood\7.jpg"
+    location_1 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\2.jpg"
+    location_2 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\7.jpg"
 
     
     image_1 = local_color_cbir.resize_preprocessing_to_array(local_color_cbir.load_image_as_hsv(location_1))
@@ -30,10 +30,10 @@ def test_spatial_without_resizing():
     return result
 
 def test_vec():
-    location_1 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\1.jpg"
-    location_2 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\wood\7.jpg"
-    vec1 = local_color_cbir.calculate_vector_from_image(location_1)
-    vec2 = local_color_cbir.calculate_vector_from_image(location_2)
+    location_1 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\2.jpg"
+    location_2 = r"C:\Users\LENOVO\OneDrive\Desktop\Algeo02-22021\images\cardataset\7.jpg"
+    vec1 = local_color_cbir.split_image_and_compute_vectors(local_color_cbir.load_image_as_hsv(location_1))
+    vec2 = local_color_cbir.split_image_and_compute_vectors(local_color_cbir.load_image_as_hsv(location_2))
     data = [
         {
             "image" : location_1,

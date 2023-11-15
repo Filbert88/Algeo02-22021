@@ -1,4 +1,4 @@
-from app import color_cbir, texture_cbir
+from app import texture_cbir, local_color_cbir
 import os
 import zipfile
 import requests
@@ -16,7 +16,7 @@ def pathjoin(dir, filename) :
 def process_file_chunk(file_chunk, result_list):
     temp_data = []
     for filename in file_chunk:
-        vec_color = color_cbir.get_vec_from_hsv_load(filename)
+        vec_color = local_color_cbir.get_block_vector_from_image(filename)
         vec_texture = texture_cbir.get_vector_from_location(filename)
         texture = [vec_texture[0], vec_texture[1], vec_texture[2]]
         temp_data.append({

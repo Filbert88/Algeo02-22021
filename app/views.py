@@ -2,7 +2,7 @@ from app import app
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, request, render_template, redirect, url_for, send_from_directory
-from app import texture_cbir, color_cbir, image_processing
+from app import texture_cbir, image_processing, local_color_cbir
 import numpy as np
 import shutil
 import orjson
@@ -130,7 +130,7 @@ def upload_image_color() :
         shutil.rmtree(upload_dir)
         os.makedirs(upload_dir)
         file.save(save_path)
-        vec = color_cbir.get_vec_from_hsv_load(save_path)
+        vec = local_color_cbir.get_block_vector_from_image(save_path)
         with open('app/data/dataset_vec.json', 'rb') as f:
             dataset = orjson.loads(f.read())
         
@@ -139,7 +139,7 @@ def upload_image_color() :
         
         similar_images = []
         for data_el in dataset :
-            similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
+            similarity = local_color_cbir.calculate_average_similarity(np.array(vec), np.array(eval(data_el["vec_color"])))
             if similarity >= 0.6 :
                 similar_images.append({
                     "filename" : data_el["filename"],
@@ -218,7 +218,7 @@ def upload_image_color_camera() :
     save_path = os.path.join(upload_dir, filename)
     image.save(save_path, format='PNG')
     start = time.time()
-    vec = color_cbir.get_vec_from_hsv_load(save_path)
+    vec = local_color_cbir.get_block_vector_from_image(save_path)
     with open('app/data/dataset_vec.json', 'rb') as f:
         dataset = orjson.loads(f.read())
     
@@ -227,7 +227,7 @@ def upload_image_color_camera() :
     
     similar_images = []
     for data_el in dataset :
-        similarity = image_processing.cosine_similarity(vec, np.fromstring(data_el["vec_color"].strip('[]'), sep=', '))
+        similarity = local_color_cbir.calculate_average_similarity(np.array(vec), np.array(eval(data_el["vec_color"])))
         if similarity >= 0.6 :
             similar_images.append({
                 "filename" : data_el["filename"],
