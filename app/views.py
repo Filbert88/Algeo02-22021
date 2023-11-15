@@ -12,14 +12,20 @@ import base64
 from PIL import Image
 from io import BytesIO
 from app import utils
+import json
 
 
 @app.route('/')
 def index():
-    with open('app/data/dataset_vec.json', 'wb') as f:
-        f.write(orjson.dumps([]))
-    with open('app/data/result.json', 'wb') as f:
-        f.write(orjson.dumps([]))
+    # Initialize data directory
+    data_dir = 'app/data'
+    if os.path.exists(data_dir):
+        shutil.rmtree(data_dir)
+    os.makedirs(data_dir, exist_ok=True)
+    with open('app/data/dataset_vec.json', 'w') as f:
+        json.dump([], f)
+    with open('app/data/result.json', 'w') as f:
+        json.dump([], f)
     user_dir = app.config['UPLOAD_FOLDER']
     dataset_dir = app.config['DATASET_FOLDER']
     if os.path.exists(user_dir):
@@ -28,6 +34,7 @@ def index():
         shutil.rmtree(dataset_dir)
     os.makedirs(user_dir, exist_ok=True)
     os.makedirs(dataset_dir, exist_ok=True)
+    
     return render_template('index.html')
 
 @app.route('/developers')
