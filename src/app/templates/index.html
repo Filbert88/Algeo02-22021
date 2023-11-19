@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixPlore</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/icon.jpg') }}" type="image/jpg">
+</head>
+
+<body>
+  <header class="header">
+    <a href="{{ url_for('index') }}" class="logo">PixPlore.</a>
+    <nav class="navbar">
+      <a href="{{ url_for('index') }}" class="textnav active">/Home</a>
+      <a href="{{ url_for('developers') }}" class="textnav">/Developers</a>
+      <a href="{{ url_for('guides') }}" class="textnav">/Guides</a>
+      <a href="{{ url_for('program') }}" class="launchApp">Launch App |></a>
+    </nav>
+  </header>
+  <div class="photos-left">
+    <div class="photos-slider-left">
+      <img src="{{ url_for('static', filename='img/photos_slider/pic1.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic2.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic3.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic4.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic5.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic6.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic7.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic8.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic9.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic10.jpg') }}" />
+    </div>
+    <div class="photos-slider-left">
+      <img src="{{ url_for('static', filename='img/photos_slider/pic1.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic2.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic3.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic4.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic5.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic6.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic7.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic8.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic9.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic10.jpg') }}" />
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="typing-demo">{PixPlore}</div>
+    <div class="container">
+      <p>
+        "Embark on a visual journey like no other. Upload an image, and let
+        PixPlore do the rest, unveiling a gallery of similarities and
+        surprises! PixPlore will find similarities between your images based
+        on color or even texture. Curious? Try now!"
+      </p>
+    </div>
+    <a href="{{ url_for('guides') }}" class="getStarted">[ Get Started ]</a>
+  </div>
+  <div class="photos-right">
+    <div class="photos-slider-right">
+      <img src="{{ url_for('static', filename='img/photos_slider/pic11.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic12.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic13.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic14.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic15.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic16.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic17.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic18.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic19.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic20.jpg') }}" />
+    </div>
+    <div class="photos-slider-right">
+      <img src="{{ url_for('static', filename='img/photos_slider/pic11.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic12.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic13.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic14.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic15.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic16.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic17.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic18.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic19.jpg') }}" />
+      <img src="{{ url_for('static', filename='img/photos_slider/pic20.jpg') }}" />
+    </div>
+  </div>
+</body>
+
+</html>

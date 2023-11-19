@@ -1,0 +1,9 @@
+programcpp/
+program/program_environment/
+env/
+app/data/img/dataset
+app/data/img/user
+__pycache__/
+**/__pycache__/
+app/data/dataset_vec.json
+app/data/result.json
