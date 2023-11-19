@@ -1,5 +1,6 @@
 # Tugas Besar 2 IF2123 Aljabar Linier dan Geometri
-> This is a project for Linear Algrebra and Geometry Class. Implementation of Content Based Image Retrieval (CBIR).
+> Pixplore – Content Based Image Retrieval System, a project for the Linear Algebra and Geometry Class at ITB.
+
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -18,10 +19,11 @@
 ## General Information
 Pixplore is an innovative Content Based Image Retrieval (CBIR) system developed as a project for the Linear Algebra and Geometry Class at ITB. Leveraging the principles of linear algebra, Pixplore offers an intuitive and efficient way to search and retrieve images based on visual content such as color and texture. This system is particularly useful in fields where visual content is paramount, like digital libraries, medical imaging, and digital forensics.
 
+
 ## Technologies Used
-- Flask - version 
-- HTMX - version 
-- Python - version 
+- Flask - 3.0.0 
+- HTMX - 1.9.8 
+- Python - 3.11.2
 
 
 ## Features
@@ -44,39 +46,39 @@ Pixplore is equipped with several advanced features, including:
 ## Setup
 To set up Pixplore, follow these steps:
 1. Clone the repository
-```console
-git clone [repository URL]
+```
+git clone https://github.com/Filbert88/Algeo02-22021.git
 ```
 2. Navigate to the project source code directory
-```console
-cd [project directory name]
+```
+cd Algeo02-22021/src
 ```
 3. Set up a virtual environment (optional but recommended)
-```console
+```
 python -m venv env
 ```
 4. Activate the virtual environment
 - For Windows
-```console
+```
 env\Scripts\activate
 ```
 - For MacOS and Linux
-```console
+```
 source env/bin/activate
 ```
 5. Install dependencies in requirements.txt
-```console
+```
 pip install -r requirements.txt
 ```
 
 
 ## Usage
 To use Pixplore:
-1. Ensure setup is complete
+1. Ensure setup is complete and the [prerequisites](#prerequisites) installed.
 - Follow all the [setup](#setup) steps and have the necessary dependencies installed.
 2. Run the application
 - Navigate to the `src` directory
-  ```console
+  ```
   cd src
   ```
 - Start the application
@@ -88,7 +90,7 @@ To use Pixplore:
 
 
 ## Project Status
-Project is currently complete and fully functional, but isn't deployed.
+Project is currently complete and fully functional, but isn't live/deployed.
 
 
 ## Room for Improvement
@@ -107,9 +109,9 @@ Future enhancements could include:
 ## Contact
 Pixplore was created by:
 
-1. Filbert / 13522021
-2. Juan Alfred Wijaya / 13522073
-3. Azmi Mahmud Bazeid / 13522109
+1. Filbert / 13522021 [GitHub Profile](https://github.com/Filbert88)
+2. Juan Alfred Wijaya / 13522073 [GitHub Profile](https://github.com/juanaw6)
+3. Azmi Mahmud Bazeid / 13522109 [GitHub Profile](https://github.com/RealAzzmi)
 
 For further inquiries or contributions, please contact us.
 
