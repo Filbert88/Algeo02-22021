@@ -82,7 +82,7 @@ To use Pixplore:
   cd src
   ```
 - Start the application
-  ```console
+  ```
   flask run --debug
   ```
 3. Accessing the Application
@@ -121,7 +121,7 @@ For further inquiries or contributions, please contact us.
 - **Python Installation**: This application requires Python to be installed on your system. If you do not have Python installed, download and install the latest version from [python.org](https://www.python.org/downloads/). We recommend using Python 3.11 or higher.
 
 #### Intended Environment
-- **Development or Testing**: This application is currently in the development or testing phase. It is not recommended for production use at this stage. We are constantly making improvements, and feedback is highly appreciated.
+- **Development or Testing**: This application is currently in the development or testing phase. It is not recommended for production use at this stage.
 
 #### Troubleshooting
 - If you encounter any issues during setup or usage, please first ensure that all steps in the 'Setup' section have been followed correctly.
